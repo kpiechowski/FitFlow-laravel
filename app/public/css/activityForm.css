@@ -1,0 +1,202 @@
+
+:root{
+    --input-bgcolor-light: rgb(55 65 81);
+    --input-border-color-light: rgb(75 85 99);
+    --backgound-main : #f59e0b;
+    --backgound-main-light : #f59f0bbe;
+    --border-color-main:#d4a428;
+    --panel-dark: #111827;
+}
+
+.activity-container {
+    border-radius: 8px;
+}
+
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+
+}
+
+.form-elem{
+    display: flex;
+    flex-flow:column;
+    justify-content: flex-start;
+
+}
+
+.form-elem.w-50{
+    max-width:calc(50% - 15px);
+}
+
+.form-elem label{
+    width:100%;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color:#ccc;
+    text-transform: uppercase;
+
+}
+
+.form-elem .input_button{
+    height: 45px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left:10px;
+    background-color: var(--input-bgcolor-light);
+    border:1px solid var(--input-border-color-light);
+    border-radius:8px;
+    color:#fff;
+    font-size:18px;
+}
+
+.form-elem option{
+    padding:10px 0;
+}
+
+.form-elem textarea.input_button{
+    height: 200px;
+}
+
+
+.button_form, .button_back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding:0 30px;
+    background-color: var(--backgound-main);
+    font-size: 18px;
+    color:#fff;
+    transition: .2s;
+    border:unset;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.button_form:hover{
+    background-color: var(--backgound-main-light);
+}
+
+.button_back{
+    background-color: var(--panel-dark);
+    border:1px solid var(--input-border-color-light);
+    margin-left:15px;
+}
+
+
+#activities-copy{
+    width:250px;
+    margin-left: 50px;
+    height: fit-content;
+}
+#activities-copy .section-title-txt{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.activities-copy-item{
+    margin-bottom: 20px;
+    padding:10px 0;
+    background-color: #44608842;
+    /* background-color: var(--input-border-color-light) ; */
+}
+
+#fw_image{ display:none;}
+#fw_upload_image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding:0 30px;
+    background-color: var(--backgound-main);
+    font-size: 18px;
+    color:#fff;
+    transition: .2s;
+    border:unset;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+
+#footwear-img-preview{
+    height: 300px;
+    background-color: var(--input-bgcolor-light);
+    border:1px solid var(--input-border-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#footwear-img-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    width:auto;
+    height: auto;
+}
+
+
+.fw_labels_cont input{
+    display: none;
+}
+.fw_labels_cont label{
+    width:30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-top:30px;
+    cursor: pointer;
+}
+
+.fw_labels_cont label img{
+    width:auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.fw_labels_cont label.active img{
+    border-radius: 50%;
+    border: 4px solid var(--backgound-main);
+}
+
+.choice-off{
+    filter:grayscale(1.5);
+
+}
+
+.choice-top-check{
+    /* position: absolute;
+    top: 0;
+    left:50%;
+    transform: translateX(-50%); */
+}
+
+
+.choice-top-check input {
+    width:40px;
+    height:40px;
+    border:4px solid var(--backgound-main-light);
+    border-radius: 50%;
+    appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color:var(--input-bgcolor-light) ;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+
+.choice-top-check input:checked {
+    background-color: var(--border-color-main);
+    background-image: url("../images/check.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

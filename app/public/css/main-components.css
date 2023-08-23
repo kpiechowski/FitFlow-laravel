@@ -1,0 +1,209 @@
+body{
+    margin: 0;
+    padding:0;
+}
+body *{
+    box-sizing: border-box;
+}
+body img{
+    max-width:100%;
+    max-height: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: unset;
+    color:inherit;
+    transition: .2s;
+}
+
+a:hover{
+    opacity: .8;
+}
+
+
+.text-up{
+    text-transform: uppercase;
+}
+
+.fontw-600{
+    font-weight: 600;
+}
+
+.text-elipsis{
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  width:100%;
+}
+
+
+.d-f{
+    display: flex;
+}
+.d-if{
+    display: inline-flex;
+}
+.d-ib{
+    display: inline-block;
+}
+
+.fd-r{
+    flex-direction: row;
+}
+.fd-c{
+    flex-direction: column;
+}
+
+
+.wrap{
+    flex-wrap: wrap;
+}
+
+.jc-c{
+    justify-content: center;
+}
+.jc-s{
+    justify-content: flex-start;
+}
+.jc-e{
+    justify-content: flex-end;
+}
+.jc-sb{
+    justify-content: space-between;
+}
+
+.jc-se{
+    justify-content: space-evenly;
+}
+
+.ai-c{
+    align-items: center;
+}
+.ai-s{
+    align-items: flex-start;
+}
+.ai-e{
+    align-items: end;
+}
+.ai-st{
+    align-items: stretch;
+}
+
+.p-0{
+    padding:0;
+}
+
+.p-10{
+    padding:10px;
+}
+
+.p-20-0{
+    padding: 20px 0;
+}
+
+.p-0-20{
+    padding:0 20px;
+}
+.p-20{
+    padding: 20px;
+}
+
+.p-40{
+    padding: 40px;
+}
+.pb-20{
+    padding-bottom: 20px;
+}
+
+.pb-50{
+    padding-bottom: 50px;
+}
+
+.pt-50{
+    padding-top: 50px;
+}
+
+.m-10{
+    margin:10px;
+}
+.mt-10{
+    margin-top:10px;
+}
+.mt-20{
+    margin-top:20px;
+}
+
+.mt-30{
+    margin-top:30px;
+}
+
+.mt-50{
+    margin-top:50px;
+}
+
+.mt-80{
+    margin-top:80px;
+}
+
+.mr-5{
+    margin-right:5px
+}
+
+.mr-10{
+    margin-right: 10px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.section-1000{
+    max-width: 1000px;
+    width:100%;
+}
+
+.section-1360{
+    max-width: 1360px;
+    width:100%;
+}
+
+.w-100{
+    width:100%
+}
+
+.w-50{
+    width:50%
+}
+
+.element-100{
+    width:100%;
+    position: relative;
+}
+
+.element-50{
+    width:50%;
+    position: relative;
+}
+
+.element-row .element-50{
+    max-width:48%;
+    width: 100%;
+}
+
+.el-round{
+    border-radius: 8px;
+    box-shadow: 0px 0px 2px 2px #49391d;
+}
+
+
+.relative{
+    position: relative;
+}
+/* modifyers */
+
+.display--none{
+    display: none !important;
+}
+
