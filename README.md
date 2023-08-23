@@ -1,2 +1,4 @@
 # FitFlow-laravel
- graduate work sport activity log with statistics
+ Graduate work - sport activity log with statistics, teams, events and more...
+
+work in progress
