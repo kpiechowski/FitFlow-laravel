@@ -16,6 +16,11 @@ class FootwearController extends Controller
     public function index()
     {
         //
+        $user = Auth::user();
+        $footwears = $user->footwear()->get();
+
+        
+        return view('profile.footwearAll', ['footwear' => $footwears]);
     }
 
     /**
@@ -49,14 +54,14 @@ class FootwearController extends Controller
                 $fw_img_size = $fw_file->getSize();
 
 
-                if($fw_img_size > 50000){
+                if($fw_img_size > 60000){
                     return back()->with('message', 'Rozmiar zdjęcia jest zbyt duży')->withInput();
                 }
 
                 $fw_file_name = Auth::user()->id . '-' . $fw_img;
 
                 // dodać zabezpieczenie na rozmiar i wielkośc zdjęcia
-                $request->file('fw_image')->storeAs('footwear_images', $fw_file_name);
+                $request->file('fw_image')->storeAs('public/footwear_images', $fw_file_name);
 
             }
         }else{

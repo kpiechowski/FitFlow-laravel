@@ -14,4 +14,14 @@ class Footwear extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function updateTotalValue($val){
+        $this->total_km += $val;
+        $this->save();
+    }
+
+    public function updateTotalTime($val){
+        $this->total_time += $val;
+        $this->save();
+    }
+    
 }

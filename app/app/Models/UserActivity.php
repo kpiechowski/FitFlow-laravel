@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
+use App\Models\Footwear;
 use App\Models\ActivitiesType;
 
 class UserActivity extends Model
@@ -32,6 +33,10 @@ class UserActivity extends Model
     public function activityType(){
         return $this->hasOne(ActivitiesType::class, 'id', 'activity_type_id');
         // return $this->hasOne(ActivitiesType::class, 'id');
+    }
+
+    public function footwear(){
+        return $this->belongsTo(Footwear::class);
     }
 
     // public function all()

@@ -39,6 +39,17 @@ a:hover{
 }
 
 
+.material-icon{
+    font-family: 'Material Symbols Rounded';
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+
+
 .d-f{
     display: flex;
 }

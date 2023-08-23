@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\UserActivity;
 use App\Models\ActivitiesType;
 use App\Models\Notification;
+use App\Models\Footwear;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -86,9 +87,12 @@ class UserActivityController extends Controller
         $ac_grouped_to_copy = Auth::user()
         ->userActivities()
         ->select('*')
-        ->groupBy('activity_type_id')
-        ->orderByDesc('created_at')
-        ->get();
+        ->orderBy('add_date', 'desc')
+        ->get()
+        ->unique('activity_type_id');
+        // ->orderByRaw('created_at DESC')
+        // ->groupBy('activity_type_id')
+        // dd($ac_grouped_to_copy);
 
         if($ac_grouped_to_copy->count() == 0){
             $ac_grouped_to_copy = false;
@@ -99,13 +103,17 @@ class UserActivityController extends Controller
         ->where('id', $id)
         ->first();
 
+        $footwear = Auth::user()->footwear()->get();
+        // dd($footwear);
+
 
         return view('activityAdd', 
             [
             'date'=>$date,
             'types'=>$types,
             'acGrouped' =>$ac_grouped_to_copy,
-            'copy' => $copy_ac
+            'copy' => $copy_ac,
+            'footwear' => $footwear
             ]
         );
     }
@@ -131,7 +139,9 @@ class UserActivityController extends Controller
         if($validator->passes()){
             $typ = ActivitiesType::where('slug','inne');
             $optional_activity = $request->input('act_optional', null);
-
+            $footwear_id = $request->input('act_footwear');
+            $value = str_replace(',','.',$request->input('act_value'));
+            $time = $request->input('act_time');
 
             $ACT = UserActivity::create([
 
@@ -140,11 +150,18 @@ class UserActivityController extends Controller
                 'add_date' => $request->input('act_start'),
                 'update_date' => $request->input('act_start'),
                 'title' => $request->input('act_name'),
-                'value' => str_replace(',','.',$request->input('act_value')),
-                'total_time' => $request->input('act_time'),
+                'value' => $value,
+                'total_time' => $time,
                 'description' => $request->input('desc'),
+                'footwear_id' => $footwear_id,
             ]);
 
+            $footwear = Footwear::find($footwear_id);
+            // dd($footwear);
+            if($footwear){
+                 $footwear->updateTotalValue($value);
+                 $footwear->updateTotalTime($time);
+            }
             NotificationController::create_activity_entry($ACT);
 
             return redirect('/userPanel/panel')->with('message', 'Poprawnie utworzono wpis');

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->foreignId('user_id');
             $table->foreignId('activity_type_id');
+            $table->foreignId('footwear_id');
             $table->string('optional_activity_type')->nullable();
             $table->date('add_date');
             $table->date('update_date');

@@ -80,6 +80,7 @@ Route::middleware([Authenticate::class])->group(function () {
     // footwear
     Route::get('/userPanel/footwear/add/', [FootwearController::class, 'create'] );
     Route::post('/userPanel/footwear/add/', [FootwearController::class, 'store'] );
+    Route::get('/userPanel/footwear/', [FootwearController::class, 'index'] );
 
     // user profile
 

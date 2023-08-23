@@ -8,7 +8,7 @@ Dodaj aktywność:
 @section('content')
 
     <div class="element-row d-f jc-sb  w-100 ai-st">
-        <x-activityForm :date="$date" :types="$types" :copy="$copy" />
+        <x-activityForm :date="$date" :types="$types" :copy="$copy" :footwear="$footwear"/>
 
         @if ($acGrouped)
             <x-activityModules.activitiesToCopy :grouped="$acGrouped" />   
