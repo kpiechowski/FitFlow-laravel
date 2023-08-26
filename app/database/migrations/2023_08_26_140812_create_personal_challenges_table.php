@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('footwears', function (Blueprint $table) {
+        Schema::create('personal_challenges', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('model');
-            $table->string('image');
-            $table->boolean('custom_foto')->default('0');
+            $table->string('title');
+            $table->string('type');
+            $table->double('goal_value');
+            $table->double('current_value');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->foreignId('user_id');
-            $table->double('total_km')->default('0');
-            $table->double('total_time')->default('0');
+            $table->boolean('complete');
+            $table->boolean('expired');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('footwears');
+        Schema::dropIfExists('personal_challenges');
     }
 };

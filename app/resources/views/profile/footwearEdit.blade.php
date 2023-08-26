@@ -3,7 +3,7 @@
 @extends('layouts.userPanelLayout')
 
 @section('content_nav')
-Dodaj nowe obuwie
+Edytuj
 @endsection
 
 @section('content')
@@ -16,19 +16,19 @@ Dodaj nowe obuwie
 
 <div class="activity-container mt-20 bg-light border-light d-f fd-c p-20 w-100">
 
-    <form action="{{ url('/userPanel/footwear/add/') }}" method="POST" id="activit-form" enctype="multipart/form-data">
+    <form action="{{ url('/userPanel/footwear/'.$shoe->id.'/edit') }}" method="POST" id="activit-form" enctype="multipart/form-data">
         @csrf
 
         <div class="form-row w-100">
 
             <div class="form-elem w-50">
                 <label for="fw_name">Nazwa obuwia </label>
-                <input class="input_button" type="text" id="fw_name" name="fw_name" value="" required>    
+                <input class="input_button" type="text" id="fw_name" name="fw_name" value="{{ $shoe->name }}" required>    
             </div>
 
             <div class="form-elem w-50">
                 <label for="fw_model">Model obuwia </label>
-                <input class="input_button" type="text" id="fw_model" name="fw_model" value=""> 
+                <input class="input_button" type="text" id="fw_model" name="fw_model" value="{{ $shoe->model }}"> 
             </div>
 
         </div>
@@ -41,11 +41,11 @@ Dodaj nowe obuwie
         <div class="w-100 d-f jc-c ai-c mb-50">
 
             <div class="choice-top-check w-100 d-f jc-c">
-                <input type="radio" name="choice-top" id="choice-top-img" value="img" required >
+                <input type="radio" name="choice-top" id="choice-top-img" value="img" required {{ $shoe->custom_foto ? 'checked' : '' }}>
             </div>
 
             <div class="choice-top-check w-100 d-f jc-c">
-                <input type="radio" name="choice-top" id="choice-top-label" value="label" required >
+                <input type="radio" name="choice-top" id="choice-top-label" value="label" required {{ $shoe->custom_foto ? '' : 'checked' }}>
             </div>
 
         </div>
@@ -59,7 +59,10 @@ Dodaj nowe obuwie
                 <input class="input_button" type="file" id="fw_image" name="fw_image" accept="image/png, image/jpeg, image/PNG, image/jpg">  
                 
                 <div class="w-100 mt-20 el-round" id="footwear-img-preview">
-                    <img src="#" alt="">
+                    @php
+                        $shoe_src = $shoe->custom_foto ? asset('storage/footwear_images/'. $shoe->image) : ''
+                    @endphp
+                    <img src="{{ $shoe_src }}" alt="">
                 </div>
 
             </div>
@@ -70,7 +73,20 @@ Dodaj nowe obuwie
 
                 <label >Wybierz etykietę</label>
                 <div class="d-f jc-se ai-c wrap fw_labels_cont">
-                    <label for="fw_label_1"><img src="{{ asset('/images/footwear/labels/fw_label_1.png') }}" alt="" loading="lazy"></label>
+
+                    @for($i=1 ; $i<=6 ; $i++)
+
+                    @php
+                        $name = "fw_label_".$i;
+
+                    @endphp
+
+                    <label for="{{$name}}" class="{{ $shoe->image == $name ? "active" : ''}}" ><img src="{{ asset('/images/footwear/labels/'.$name.'.png') }}" alt="" loading="lazy"></label>
+                    <input type="radio" name="fw_label" id="{{$name}}" value="{{$name}}" {{ $shoe->image == $name ? 'checked' : ''}}>
+
+                    @endfor
+
+                    {{-- <label for="fw_label_1"><img src="{{ asset('/images/footwear/labels/fw_label_1.png') }}" alt="" loading="lazy"></label>
                     <input type="radio" name="fw_label" id="fw_label_1" value="fw_label_1">
                     <label for="fw_label_2"><img src="{{ asset('/images/footwear/labels/fw_label_2.png') }}" alt="" loading="lazy"></label>
                     <input type="radio" name="fw_label" id="fw_label_2" value="fw_label_2">
@@ -81,7 +97,7 @@ Dodaj nowe obuwie
                     <label for="fw_label_5"><img src="{{ asset('/images/footwear/labels/fw_label_5.png') }}" alt="" loading="lazy"></label>
                     <input type="radio" name="fw_label" id="fw_label_5" value="fw_label_5">
                     <label for="fw_label_6"><img src="{{ asset('/images/footwear/labels/fw_label_6.png') }}" alt="" loading="lazy"></label>
-                    <input type="radio" name="fw_label" id="fw_label_6" value="fw_label_6">
+                    <input type="radio" name="fw_label" id="fw_label_6" value="fw_label_6"> --}}
                 </div>
 
             </div>
@@ -89,9 +105,9 @@ Dodaj nowe obuwie
         </div>
 
         <div class="d-f ai-c jc-s">
-            <button type="submit" class="button_form">Dodaj</button>
+            <button type="submit" class="button_form">Zapis</button>
             <a href="{{ url('/userPanel/panel/') }}" class="button_back">Wstecz</a>
-            <a href="{{ url('/userPanel/addActivity/') }}" class="button_back">Wyczyść</a>
+            {{-- <a href="{{ url('/userPanel/addActivity/') }}" class="button_back">Wyczyść</a> --}}
         </div>
 
     </form>

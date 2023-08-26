@@ -59,13 +59,14 @@ class FootwearController extends Controller
                 }
 
                 $fw_file_name = Auth::user()->id . '-' . $fw_img;
-
+                $custom_foto = 1;
                 // dodać zabezpieczenie na rozmiar i wielkośc zdjęcia
                 $request->file('fw_image')->storeAs('public/footwear_images', $fw_file_name);
+                
 
             }
         }else{
-            
+            $custom_foto = 0;
             $fw_file_name = $request->get('fw_label');
 
         }
@@ -73,12 +74,13 @@ class FootwearController extends Controller
         $FW = new Footwear();
         $FW->name = $name;
         $FW->model = $model;
+        $FW->custom_foto = 
         $FW->user_id = Auth::user()->id;
         $FW->image = $fw_file_name;
 
         $FW->save();
 
-        return redirect('userPanel/panel')->with('message', 'Dodano obuwie do profilu');
+        return redirect('userPanel/footwear')->with('message', 'Dodano obuwie do profilu');
 
     }
 
@@ -96,14 +98,60 @@ class FootwearController extends Controller
     public function edit(Footwear $footwear)
     {
         //
-    }
+        // dd($footwear);
+        if($footwear && $footwear->user_id == Auth::user()->id){
+            return view('profile.footwearEdit', ['shoe'=> $footwear]);
+        }else{
+            return redirect('userPanel/panel');
+        }
 
+    }
+    
+    // $footwear = Footwear::find()
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Footwear $footwear)
+    public function update(Request $req, Footwear $footwear)
     {
         //
+        $footwear->name = $req->get('fw_name');
+        $footwear->model = $req->get('fw_model');
+
+        $img_choice = $req->get('choice-top');
+
+        if($img_choice == 'img'){
+            // dd($request->file('fw_image')->getClientOriginalName());
+            $custom_foto = 1;
+            if($req->hasFile('fw_image') && $req->file('fw_image')->isValid()) {
+                $fw_file =  $req->file('fw_image');
+                $fw_img = $fw_file->getClientOriginalName();
+                $fw_img_size = $fw_file->getSize();
+
+
+                if($fw_img_size > 60000){
+                    return back()->with('message', 'Rozmiar zdjęcia jest zbyt duży')->withInput();
+                }
+
+                $fw_file_name = Auth::user()->id . '-' . $fw_img;
+                // dodać zabezpieczenie na rozmiar i wielkośc zdjęcia
+                $req->file('fw_image')->storeAs('public/footwear_images', $fw_file_name);
+                $footwear->image = $fw_file_name;
+                
+
+            }
+        }else{
+            $custom_foto = 0;
+            $fw_file_name = $req->get('fw_label').'.png';
+            $footwear->image = $fw_file_name;
+
+        }
+
+        $footwear->custom_foto = $custom_foto;
+
+        $footwear->save();
+
+        return redirect('userPanel/footwear')->with('message', 'Pomyślnie zapisano');
+
     }
 
     /**

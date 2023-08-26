@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserActivity;
 use App\Models\Notification;
 use App\Models\Footwear;
+use App\Models\PersonalChallenge;
 
 class User extends Authenticatable
 {
@@ -61,6 +62,10 @@ class User extends Authenticatable
 
     public function footwear(){
         return $this->hasMany(Footwear::class);
+    }
+     
+    public function challenges(){
+        return $this->hasMany(PersonalChallenge::class);
     }
 
 
