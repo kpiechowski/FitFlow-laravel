@@ -5,6 +5,7 @@ class panelController{
 
         this.initNotificationTab()
         this.initProfileTab();
+        this.initConfirmBox();
     }
 
     initNotificationTab(){
@@ -24,6 +25,22 @@ class panelController{
 
         this.profile_icon.addEventListener('click', ()=>{this.profile_tab.classList.toggle('popup--active')});
     }
+
+    initConfirmBox(){
+        this.confirm_bg = document.querySelector('.confirm-box-background');
+        this.confirm_bg.addEventListener('click', ()=>{
+            // console.log('elo');
+            this.confirm_bg.classList.add('display--none');
+        });
+    }
+
+    openConfirmBox(link, text){
+        this.confirm_bg.classList.remove('display--none');
+        this.confirm_bg.querySelector('.confirm-box-text').innerHTML = text;
+        this.confirm_bg.querySelector('.confirm-box-button').setAttribute('href', link);
+    }
+
+
 
 }
 

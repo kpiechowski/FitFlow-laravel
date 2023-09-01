@@ -7,8 +7,9 @@
     --up-panel-height:70px;
     --border-color-light:#686868c8;
     --border-color-main:#d4a428;
-    --background-main : #f59e0b;
+    --background-main: #f59e0b;
     --background-light-blue:#446088;
+    --background-light-blue-op:#44608891;
     --font-header:'Signika', sans-serif
 }
 
@@ -68,6 +69,74 @@
     border-radius:4px;
 
 }
+
+.confirm-box-background{
+    width:100vw;
+    height: 100vh;
+    position: fixed;
+    left:0;
+    top:0;
+    z-index:90;
+    background-color: var(--background-light-blue-op);
+}
+
+.confirm-box{
+    width:400px;
+    box-sizing: border-box;
+    padding: 18px;
+    background-color: var(--panel-light);
+    border: 3px solid var(--background-main);
+    border-radius:6px;
+    position: relative;
+
+
+}
+
+.confirm-box:after{
+    content: "+";
+    font-size:25px;
+    position: absolute;
+    right: -25px;
+    top: -25px;
+    width:30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--background-main);
+    color:white;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+.confirm-box-text {
+    width:100%;
+    font-size:22px;
+    color:#fff;
+    font-family: var(--font-header);
+    text-align: center;
+}
+
+.confirm-box-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 0 30px;
+    background-color:  var(--background-main);
+    font-size: 20px;
+    color: #fff;
+    transition: .2s;
+    border: unset;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: unset;
+    /* font-family: var(--font-header); */
+    z-index: 91;
+}
+
 
 body{
     color:#ccc;

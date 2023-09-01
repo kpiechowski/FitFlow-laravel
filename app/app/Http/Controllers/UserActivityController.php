@@ -142,11 +142,12 @@ class UserActivityController extends Controller
             $footwear_id = $request->input('act_footwear');
             $value = str_replace(',','.',$request->input('act_value'));
             $time = $request->input('act_time');
+            $ac_type = $request->input('act_type');
 
             $ACT = UserActivity::create([
 
                 'user_id' => Auth::user()->id,
-                'activity_type_id' => $request->input('act_type'),
+                'activity_type_id' => $ac_type,
                 'add_date' => $request->input('act_start'),
                 'update_date' => $request->input('act_start'),
                 'title' => $request->input('act_name'),
@@ -156,13 +157,23 @@ class UserActivityController extends Controller
                 'footwear_id' => $footwear_id,
             ]);
 
+            // obuwie
             $footwear = Footwear::find($footwear_id);
-            // dd($footwear);
             if($footwear){
                  $footwear->updateTotalValue($value);
                  $footwear->updateTotalTime($time);
             }
+
+            // powiadomienia
             NotificationController::create_activity_entry($ACT);
+
+            // wyzwania
+            $wyzwania = Auth::user()->activeChallenges($ac_type)->get();
+            foreach ($wyzwania as $w) {
+                $w->updateCurrentValue($ACT);
+            }
+
+
 
             return redirect('/userPanel/panel')->with('message', 'Poprawnie utworzono wpis');
         }

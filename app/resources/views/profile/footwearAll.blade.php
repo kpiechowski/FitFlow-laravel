@@ -35,3 +35,15 @@ Moje buty:
 
 @endsection
 
+
+@section('small_script')
+
+console.log('el');
+document.querySelectorAll('.footwear-option-delete').forEach(el=>{
+    el.addEventListener('click', function(e){
+        e.preventDefault();
+        panel_controller.openConfirmBox(el.getAttribute('href'), "Czy na pewno chcesz usunąć ten element?");
+    });
+});
+
+@endsection

@@ -160,5 +160,12 @@ class FootwearController extends Controller
     public function destroy(Footwear $footwear)
     {
         //
+        if($footwear && $footwear->user_id == Auth::user()->id){
+            $footwear->delete();
+            return redirect('userPanel/footwear')->with('message', 'Pomyślnie usunięto');
+        }else{
+            return redirect('userPanel/panel');
+        }
+
     }
 }

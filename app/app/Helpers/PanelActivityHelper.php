@@ -61,6 +61,16 @@ class PanelActivityHelper
 
     }
 
+
+    public function getAllActivitiesTypes(){
+        return ActivitiesType::get();
+    }
+
+
+    public function getActivityTypeById($id){
+        return ActivitiesType::find($id);
+    }
+
     // public function getUserData(){
 
 

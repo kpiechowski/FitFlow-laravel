@@ -17,7 +17,7 @@
         <a href="{{ url('userPanel/footwear/' . $shoe->id . '/edit/') }}" class="footware-option-el">
             <span class="material-icon">edit</span>
         </a>
-        <a href="{{ url('userPanel/footwear/' . $shoe->id . '/edit/') }}" class="footware-option-el">
+        <a href="{{ url('userPanel/footwear/' . $shoe->id . '/delete/') }}" class="footware-option-el footwear-option-delete" >
             <span class="material-icon">delete</span>
         </a>
 

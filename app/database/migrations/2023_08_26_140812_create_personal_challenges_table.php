@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->boolean('complete');
             $table->boolean('expired');
+            $table->text('description')->nullable();
+            $table->foreignId('allowed_activity');
             $table->timestamps();
         });
     }

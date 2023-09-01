@@ -22,11 +22,18 @@
 
     @endphp
 
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            @yield('small_script')
+        });
+    </script>
+
 </head>
 <body>
     <div class="page-content-wrapper">
 
         <x-msgPopup />
+        <x-confirmBox />
 
         <div class="page-main-content-wrapper d-f wrap ">
             <x-panel.menuBar :currentUserData="$currentUserData" :newNotifications="$newNotifications" />

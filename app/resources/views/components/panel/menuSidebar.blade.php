@@ -23,7 +23,7 @@
             </div>
 
             <div class="sidebar-elem selectable-element">
-                <a href="">Wydarzenia personalne</a>
+                <a href="{{ url('/userPanel/challenges/') }}">Wyzwania</a>
             </div>
 
         </div>

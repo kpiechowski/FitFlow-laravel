@@ -63,9 +63,37 @@ class User extends Authenticatable
     public function footwear(){
         return $this->hasMany(Footwear::class);
     }
+
+
+    // wyzwania
      
     public function challenges(){
         return $this->hasMany(PersonalChallenge::class);
+    }
+
+    public function activeChallenges($ac_type = 0){
+
+        if($ac_type != 0){ 
+            return $this->hasMany(PersonalChallenge::class)
+                ->where(function ($query) use ($ac_type) {
+                    $query->where('expired', 0)
+                          ->where(function ($query) use ($ac_type){
+                              $query->where('allowed_activity', $ac_type)
+                                    ->orWhere('allowed_activity', 0);
+                          });
+                });
+
+        }else{
+            return $this->hasMany(PersonalChallenge::class)->where('expired', 0);
+        }
+    }
+
+    public function completeChallenges(){
+        return $this->hasMany(PersonalChallenge::class)->where('complete', 1);
+    }
+
+    public function expiredChallenges(){
+        return $this->hasMany(PersonalChallenge::class)->where('expired', 1);
     }
 
 

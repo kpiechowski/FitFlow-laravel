@@ -11,6 +11,7 @@ use App\Http\Controllers\UserActivityController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\FootwearController;
+use App\Http\Controllers\PersonalChallengeController;
 
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -83,6 +84,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/userPanel/footwear/{footwear}/edit', [FootwearController::class, 'edit'] );
     Route::post('/userPanel/footwear/{footwear}/edit', [FootwearController::class, 'update'] );
     Route::get('/userPanel/footwear/', [FootwearController::class, 'index'] );
+    Route::get('/userPanel/footwear/{footwear}/delete', [FootwearController::class, 'destroy'] );
 
     // user profile
 
@@ -90,7 +92,9 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/userPanel/profile/view', [UserController::class, 'show']);
 
 
+    // personal challenges
 
-
-
+    Route::get('userPanel/challenges/', [PersonalChallengeController::class, 'index']);
+    Route::get('userPanel/challenges/add', [PersonalChallengeController::class, 'create']);
+    Route::post('userPanel/challenges/add', [PersonalChallengeController::class, 'store']);
 });

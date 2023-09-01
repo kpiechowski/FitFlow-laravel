@@ -318,3 +318,146 @@
 .footwear-info .key {
     color: #f59e0b
 }
+
+
+
+.challenge-title{
+    width:80%;
+    margin:0 auto;
+    font-size:32px;
+    color:#fff;
+    font-family: var(--font-header);
+    padding:30px 0;
+    border-bottom: 2px solid var(--border-color-light);
+    text-align: center;
+    position: relative;
+}
+.challenge-title:after {
+    position: absolute;
+    bottom: -1px;
+    left:0;
+    /* transform: translateX(-50%); */
+    content: "";
+    width: 100%;
+    height: 2px;
+    z-index: 20;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 10%, rgb(235, 125, 22) 50%, rgba(0,0,0,0) 90%);
+}
+
+.challenge-empty{
+    text-align:center;
+    font-size:22px;
+}
+
+.challenge-add{
+    padding:10px;
+    border-radius: 10px;
+    background-color: var(--background-main);
+    color:white;
+    font-size:20px;
+    text-transform: uppercase;
+    border:1px solid #222;
+    /* box-shadow: 0px 0px 1px 1px #ccc; */
+}
+
+.challenge-add span{
+    position: relative;
+    /* bottom: 1px; */
+    margin-left: 8px;
+    font-size:30px;
+}
+
+.challenge-box{
+    box-shadow: 0px 0px 2px 2px #49391d;
+    color:#fff;
+    /* padding-bottom: 20px; */
+}
+
+.challenge-box-icon{
+    width:90px;
+    height: 90px;
+    border:4px solid var(--background-main);
+    border-radius:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:70px;
+    
+}
+
+.challenge-name-wrapp{
+    padding-right: 50px;
+}
+
+.challenge-name{
+    
+    font-size: 28px;
+}
+.challenge-type{
+    color:#ccc;
+    font-size:20px;
+    margin-top:4px;
+    /* text-decoration: underline; */
+}
+
+.challenge-box-info {
+    font-size:20px;
+}
+
+.challenge-box-info progress[value]{
+    width:100%;
+    height: 30px;
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    width: 100%;
+    height: 14px;
+    /* max-width: 264px; */
+    border-radius: 14px;
+    margin-top: 7px;
+    vertical-align: 0;
+    margin: auto;
+    margin-top: 7px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.challenge-box-info progress[value]::-webkit-progress-value{
+    background-color: greenyellow;
+    border-radius: 4px;
+}
+
+.progress-wrapp{
+    width:80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.challengebox-desc {
+    /* box-shadow: var(--border-blue); */
+    border-left: 2px solid var(--background-main)
+}
+
+.challenge-box-info b{
+    color:var(--background-main);
+    font-size:24px;
+}
+
+.challenge-box-options{
+    gap:10px;
+}
+
+.challenge-box-options a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:30px;
+    color:#fff;
+    width:35px;
+    height: 35px;
+    background-color: var(--background-main);
+    border-radius: 10px;
+}

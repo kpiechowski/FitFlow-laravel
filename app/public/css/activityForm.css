@@ -53,6 +53,22 @@
     font-size:18px;
 }
 
+.form-elem.form-element-checkbox{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow:row;
+}
+.form-elem.form-element-checkbox label{
+    width:auto;
+    margin-bottom: 0;
+}
+.form-element-checkbox .input_button{
+    height: 20px;
+    width:20px;
+    margin-left:10px;
+}
+
 .form-elem option{
     padding:10px 0;
 }
