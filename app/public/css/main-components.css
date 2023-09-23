@@ -225,3 +225,11 @@ a:hover{
     display: none !important;
 }
 
+.el-disable{
+    opacity:0.5 !important;
+    pointer-events: none !important;
+}
+
+.el-hide{
+    opacity:0;
+}

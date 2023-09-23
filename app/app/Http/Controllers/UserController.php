@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 use App\Models\User;
+use App\Models\ActivitiesType;
 
 
 class UserController extends Controller
@@ -126,6 +127,41 @@ class UserController extends Controller
     public function logOutUser(Request $req){
         Auth::logout();
         return redirect('/')->with('message', 'Poprawnie wylogowano');
+    }
+
+
+    public function summary(){
+
+        $user = Auth::user();
+        $user_all_activities = $user->userActivities()->get();
+
+        
+        $ac_types_data = []; // get info about activities types
+        foreach (ActivitiesType::get() as $type) {
+            $type_id = $type->id;
+            $ac_types_data[$type_id]['model'] = $type;
+            $ac_types_data[$type_id]['activities'] = $type->getActivitiesByUser($user->id)->get();
+            $ac_types_data[$type_id]['ac_count'] = count($ac_types_data[$type_id]['activities']);
+
+            $total_time = $total_val = 0;
+            foreach ($ac_types_data[$type_id]['activities'] as $ac) {
+                $total_time += $ac->total_time;
+                $total_val += $ac->value;
+            }
+            
+            $ac_types_data[$type_id]['total_time'] = $total_time;
+            $ac_types_data[$type_id]['total_value'] = $total_val;
+
+            $ac_types_data[$type_id]['avg_time'] = ($ac_types_data[$type_id]['ac_count'] > 0) ?  $total_time/$ac_types_data[$type_id]['ac_count'] : 0;
+            $ac_types_data[$type_id]['avg_value'] = ($ac_types_data[$type_id]['ac_count'] > 0) ?  $total_val/$ac_types_data[$type_id]['ac_count'] : 0;
+
+        }
+        // dd($ac_types_data);
+
+        return view('profile.summary',[
+            'userID' => $user->id,
+            'ac_types_data' => $ac_types_data,
+        ]);
     }
 
 }

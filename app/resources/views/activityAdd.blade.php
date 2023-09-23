@@ -7,7 +7,7 @@ Dodaj aktywność:
 
 @section('content')
 
-    <div class="element-row d-f jc-sb  w-100 ai-st">
+    <div class="element-row d-f jc-sb  w-100 ai-st" data-aos="fade-up" data-aos-duration="1000">
         <x-activityForm :date="$date" :types="$types" :copy="$copy" :footwear="$footwear"/>
 
         @if ($acGrouped)

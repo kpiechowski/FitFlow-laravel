@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\NotificationController;
+
 class PersonalChallengeController extends Controller
 {
     /**
@@ -18,7 +20,7 @@ class PersonalChallengeController extends Controller
         //
         return view('profile.challenges', 
         [
-            'onGoing' => Auth::user()->activeChallenges()->get(),
+            'onGoing' => Auth::user()->onGoingChallenges()->get(),
             'completed' => Auth::user()->completeChallenges()->get(),
             'expired' => Auth::user()->expiredChallenges()->get()
         ]);
@@ -75,6 +77,8 @@ class PersonalChallengeController extends Controller
 
 
             $chall->save();
+
+            NotificationController::create_challenge_entry($chall);
 
             if($request->has('chall_count_prev')) $chall->updateByPreviousActivities();
 

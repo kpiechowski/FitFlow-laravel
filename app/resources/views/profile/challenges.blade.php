@@ -4,6 +4,12 @@
 Wyzwania
 @endsection
 
+@section('resource_button')
+
+<div class="w-100 mt-20 d-f jc-e ai-c">
+    <a href="{{url('userPanel/challenges/add/')}}" class="challenge-add d-f jc-sb ai-c">Dodaj nowe wyzwanie <span class="material-icon">add_circle</span></a>
+</div>
+@endsection
 
 @section('content')
 
@@ -14,9 +20,6 @@ Wyzwania
 @endphp
 
 
-<div class="w-100 mt-20 d-f jc-e ai-c">
-    <a href="{{url('userPanel/challenges/add/')}}" class="challenge-add d-f jc-sb ai-c">Dodaj nowe wyzwanie <span class="material-icon">add_circle</span></a>
-</div>
 
 
 <div class="w-100 mt-50">
@@ -41,11 +44,12 @@ Wyzwania
 
 <div class="challenge-wrapper w-100 mt-20">
 
-    @if ($onGoing->isEmpty())
+    @if ($completed->isEmpty())
         <div class="challenge-empty w-100 p-40">Brak wyzwań do wyświetlenia</div>
-    @else
-        
-        <div class="challenge-empty w-100 p-40">Brak wyzwań do wyświetlenia</div>
+    @else 
+        @foreach ($completed as $chall)
+            <x-panel.challenge :obj="$chall" :panelHelper="$panelActivityHelper" />
+        @endforeach
     @endif
 
 </div>
@@ -56,11 +60,12 @@ Wyzwania
 
 <div class="challenge-wrapper w-100 mt-20">
 
-    @if ($onGoing->isEmpty())
+    @if ($expired->isEmpty())
         <div class="challenge-empty w-100 p-40">Brak wyzwań do wyświetlenia</div>
     @else
-        
-        <div class="challenge-empty w-100 p-40">Brak wyzwań do wyświetlenia</div>
+        @foreach ($expired as $chall)
+            <x-panel.challenge :obj="$chall" :panelHelper="$panelActivityHelper" />
+        @endforeach
     @endif
 
 </div>

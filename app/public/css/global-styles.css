@@ -143,6 +143,7 @@ body{
     background-color: var(--panel-dark);
     font-family: 'Poppins';
     overflow-x:hidden;
+    overflow-y:hidden;
 }
 
 
@@ -497,12 +498,18 @@ background: linear-gradient(90deg, rgba(0,0,0,0) 10%, rgb(235, 125, 22) 50%, rgb
     background-color:var(--background-light-blue);
     border-top:2px solid var(--panel-dark);
     border-bottom:2px solid var(--panel-dark);
+    transition: .4s;
 }
 
 .notification-title-txt{
     margin-left:15px;
     font-size: 15px;
     color:#fff;
+}
+
+.notification-type-icon span{
+    font-size:40px;
+    color:var(--background-main)
 }
 
 .notification-actions{

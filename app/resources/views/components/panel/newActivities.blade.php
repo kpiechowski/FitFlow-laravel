@@ -4,7 +4,7 @@
 // dd($data);
 @endphp
 
-<div class="element-100 bg-light p-10 el-round color-white">
+<div class="element-100 bg-light p-10 el-round color-white" data-aos="fade-up" data-aos-duration="1000">
 
     <div class="element-title w-100 d-f jc-sb ai-c">
         <div>Najnowsze aktywności</div>

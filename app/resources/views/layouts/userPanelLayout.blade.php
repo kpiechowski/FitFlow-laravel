@@ -35,17 +35,18 @@
         <x-msgPopup />
         <x-confirmBox />
 
-        <div class="page-main-content-wrapper d-f wrap ">
+        <div class="page-main-content-wrapper d-f wrap " >
             <x-panel.menuBar :currentUserData="$currentUserData" :newNotifications="$newNotifications" />
 
             <x-panel.menuSidebar  />
 
-            <main class="d-f jc-c ai-s" id="main">
+            <main class="d-f jc-c ai-s" id="main" >
 
-                <div class="section-1360 p-20 d-f jc-s  fd-c">
+                <div class="section-1360 p-20 d-f jc-s  fd-c" data-aos="fade-up" data-aos-duration="1000">
 
-                    <div class="panel-content-nav-title w-100">
+                    <div class="panel-content-nav-title w-100 d-f jc-sb- ai-c">
                         @yield('content_nav')
+                        @yield('resource_button')
                     </div>
 
 
@@ -59,5 +60,12 @@
         </div>
 
     </div>
+
+
+    <script>
+        AOS.init();
+    </script>
+
+
 </body>
 </html>

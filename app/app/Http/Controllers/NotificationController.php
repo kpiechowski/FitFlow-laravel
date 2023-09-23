@@ -33,9 +33,19 @@ class NotificationController extends Controller
 
         Notification::create([
             'user_id'=> Auth::user()->id,
-            'title' => 'Successfully added activity: '.$activity->title,
+            'title' => 'Pomyślnie dodano aktywność: '.$activity->title,
             'type' => 'activity',
-            'message'=> "Successfully added an activity named '$activity->title', total time: $activity->total_time min."
+            'message'=> "Pomyślnie dodano aktywność o nazwie '$activity->title', łączny czas: $activity->total_time min. "
+        ]);
+    }
+
+    public static function create_challenge_entry($chall){
+
+        Notification::create([
+            'user_id'=> Auth::user()->id,
+            'title' => 'Pomyślnie dodano wyzwanie: '.$chall->title,
+            'type' => 'challenge',
+            'message'=> "Dodano wyzwanie o nazwie '$chall->title', data startu wyzwania: '$chall->start_date', data zakończenia: '$chall->end_date', oczekiwany cel: '$chall->goal_value' "
         ]);
     }
 
@@ -46,6 +56,20 @@ class NotificationController extends Controller
     {
         //
     }
+
+    /**
+     * unmark a notification.
+     */
+     public function unmark(Notification $notification)
+    {
+        //
+        // dd($notification);
+        $notification->isRead = 1;
+        $notification->save();
+
+        return '1';
+    }
+
 
     /**
      * Display the specified resource.

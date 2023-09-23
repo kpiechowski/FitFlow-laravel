@@ -25,10 +25,10 @@
                 <div id="notification-close">+</div>
                 <div class="notification_title section-title-txt">Notifications:</div>
                 <div class="w-100 mt-10 d-f ai-c jc-s wrap notification_options">
-                    <div id="notification-read-all" class="selectable-element-small">Read all</div>
-                    <div id="notification-read-all" class="selectable-element-small">Clear</div>
+                    <div id="notification-read-all" class="selectable-element-small">Odznacz wszystkie</div>
                     <div id="notification-see-all" class="selectable-element-small">
-                        <a href="{{ url('userPanel/notification/view/') }}">See all notifications</a></div>
+                        <a href="{{ url('userPanel/notification/view/') }}">See all notifications</a>
+                    </div>
                 </div>
 
             </div>

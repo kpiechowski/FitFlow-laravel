@@ -3,7 +3,7 @@
 {{-- {{ dd($la) }} --}}
 
 
-<div class="bg-light p-10 element-50 d-f jc-c ai-c el-round color-white">
+<div class="bg-light p-10 element-50 d-f jc-c ai-c el-round color-white" data-aos="fade-up" data-aos-duration="1000">
 
     <div class="w-100 d-f fd-c">
         <div class="element-title w-100 d-f jc-sb ai-c">

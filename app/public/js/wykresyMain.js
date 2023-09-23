@@ -62,7 +62,7 @@ function initActivityTypesChar(charData){
 }
 
 function initActivityPerMonthChart(charData){
-    console.log(charData.data);
+    // console.log(charData.data);
 
     var numericValues = charData.data.filter(value => typeof value === 'number');
     var maxValue = Math.max(...numericValues);

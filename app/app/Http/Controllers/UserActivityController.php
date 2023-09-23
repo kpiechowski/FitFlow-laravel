@@ -288,6 +288,30 @@ class UserActivityController extends Controller
 
     }
 
+    public function getActivityCountPerMonth(){
+
+        $data = Auth::user()
+        ->userActivities()
+        ->select(DB::raw('MONTH(add_date) as month, YEAR(add_date) as year , COUNT(id) as amountCount'))
+        // ->groupBy(DB::raw('MONTH(add_date)'))
+        ->groupBy('year', 'month')
+        ->get();
+
+        $month_info = [];
+
+        foreach ($data as $row) {
+            $month = ($row->month < 10) ? "0".$row->month : $row->month;
+            $label = $row->year.'-'.$month;
+            $month_info[$label] = $row->amountCount;
+
+        }
+
+        // dd($month_info);
+
+        return json_encode($month_info);
+
+    }
+
 }
 
 

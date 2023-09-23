@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\UserActivity;
+use App\Models\User;
+
 class ActivitiesType extends Model
 {
     use HasFactory;
@@ -19,6 +22,13 @@ class ActivitiesType extends Model
         return 'brak';
     }
 
+    public function getActivities(){
+        return $this->HasMany(UserActivity::class, 'activity_type_id');
+    }
+
+    public function getActivitiesByUser($id){
+        return $this->HasMany(UserActivity::class, 'activity_type_id')->where('user_id', $id);
+    }
 
 
 }

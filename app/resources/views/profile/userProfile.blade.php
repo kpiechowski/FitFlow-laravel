@@ -101,7 +101,7 @@
             <div>Statystyki</div>
         </div>
 
-        <div class="bg-light element-row el-round  p-20 w-100">
+        <div class="bg-light element-row el-round  p-20 w-100" data-aos="fade-up" data-aos-duration="1000">
 
             <div class="text-center w-100 d-f jc-c ai-c stat-row-title">Miesięczne</div>
             <div class="profile-stat-row w-100 d-f jc-c mt-50">
@@ -197,7 +197,7 @@
                 </div> --}}
             </div>  
 
-            <div class="text-center w-100 d-f jc-c ai-c stat-row-title">Najczęstszy rodzaj aktywności:&nbsp;<b>{{ $monthStats['month_user_top_activity']['model']->name }}</b></div>
+            <div class="text-center w-100 d-f jc-c ai-c stat-row-title"><b><a href="{{ url('/userPanel/summary/') }}">Zobacz podsumowanie</a></b></div>
             {{-- <div class="w-100 d-f jc-c mt-50">
 
                 <div class="profile-stat-el">

@@ -75,7 +75,7 @@ class UserHelper
     }
 
     public function getUserNewNotifications(){
-        return $this->user->notifications()->where('isRead',false)->get();
+        return $this->user->notifications()->where('isRead',false)->orderByRaw('CAST(id AS UNSIGNED) DESC')->get();
     }
 
   

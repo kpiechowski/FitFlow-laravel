@@ -7,3 +7,9 @@
 
 <script src="{{ asset('js/panelController.js') }}"></script>
 
+{{-- aos --}}
+<link rel="stylesheet" href="{{ asset('css/aos.css') }}">
+<script src="{{ asset('js/aos.js') }}"></script>
+
+
+

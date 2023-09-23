@@ -72,11 +72,14 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/userPanel/panel/getUserActivityJson/{month}', [UserActivityController::class, 'getJsonByMonth']);
     Route::get('/userPanel/panel/getUserActivityTypesChart/{year?}', [UserActivityController::class, 'getYearActivityCountPerType']);
     Route::get('/userPanel/panel/getUserActivityPerMonthChart/{year?}', [UserActivityController::class, 'getYearActivityCountPerMonth']);
+    Route::get('/userPanel/panel/getUserActivityPerMonthChartAll/', [UserActivityController::class, 'getActivityCountPerMonth']);
 
 
     // notifications
     Route::get('/userPanel/notification/view/{notification:id}', [NotificationController::class, 'show'] );
     Route::get('/userPanel/notification/view/', [NotificationController::class, 'index'] );
+    Route::get('/userPanel/notification/unmark/{notification}', [NotificationController::class, 'unmark'] );
+
 
     // footwear
     Route::get('/userPanel/footwear/add/', [FootwearController::class, 'create'] );
@@ -97,4 +100,9 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('userPanel/challenges/', [PersonalChallengeController::class, 'index']);
     Route::get('userPanel/challenges/add', [PersonalChallengeController::class, 'create']);
     Route::post('userPanel/challenges/add', [PersonalChallengeController::class, 'store']);
+
+    // summary
+
+    Route::get('/userPanel/summary', [UserController::class, 'summary']);
+
 });

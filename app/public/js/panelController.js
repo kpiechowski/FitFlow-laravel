@@ -12,11 +12,50 @@ class panelController{
         this.notification_tab = document.querySelector('#notification-container');
         this.notification_close = document.querySelector('#notification-close');
         this.notification_box = document.querySelector('#notification-box');
+        this.notification_read_all = document.querySelector('#notification-read-all');
+        this.notification_counter = document.querySelector('.notification-amout');
+        this.notification_elements = document.querySelectorAll('#notification-elements .notification');
+
+        this.notification_elements.forEach(el=>{
+            el.querySelector('.notification-unmark').addEventListener('click',()=>{
+                this.updateNotifCounter(1);
+                fetch('/userPanel/notification/unmark/'+el.getAttribute('data-notId'))
+                .then(response=>{
+                    if (response.ok){
+                        el.classList.add('el-hide');
+                        setTimeout(() => {
+                            el.classList.add('display--none');
+                        }, 500);
+                    }
+                });
+            });
+        });
+
+        this.notification_read_all.addEventListener('click', ()=>{
+            this.notification_elements.forEach(el=>{
+                this.updateNotifCounter(this.notification_counter.textContent);
+                this.notification_box.querySelector('.notification-img').classList.remove('notifications--new');
+                fetch('/userPanel/notification/unmark/'+el.getAttribute('data-notId'))
+                .then(response=>{
+                    if (response.ok){
+                        el.classList.add('el-hide');
+                        setTimeout(() => {
+                            el.classList.add('display--none');
+                        }, 500);
+                    }
+                });
+            });
+        });
 
         this.notification_box.addEventListener('click', ()=>{this.notification_tab.classList.add('notification--show'); })
 
         this.notification_close.addEventListener('click', ()=>{this.notification_tab.classList.remove('notification--show'); })
 
+    }
+
+    updateNotifCounter(byValue){
+        let amout = this.notification_counter.textContent;
+        this.notification_counter.innerHTML = (amout - parseInt(byValue));
     }
 
     initProfileTab(){

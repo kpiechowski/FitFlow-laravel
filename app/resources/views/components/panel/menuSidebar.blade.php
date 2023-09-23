@@ -23,12 +23,16 @@
             </div>
 
             <div class="sidebar-elem selectable-element">
+                <a href="{{ url('/userPanel/summary/') }}">Statystyki</a>
+            </div>
+
+            <div class="sidebar-elem selectable-element">
                 <a href="{{ url('/userPanel/challenges/') }}">Wyzwania</a>
             </div>
 
         </div>
 
-        <div class="sidebar-section">
+        <div class="sidebar-section el-disable">
             <div class="sidebar-section-label">Drużyna</div>
 
             <div class="sidebar-elem selectable-element">

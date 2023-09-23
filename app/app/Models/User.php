@@ -49,6 +49,7 @@ class User extends Authenticatable
     public function getUserProfileIcon(){
 
     }
+    
 
     public function userActivities()
     {
@@ -86,6 +87,10 @@ class User extends Authenticatable
         }else{
             return $this->hasMany(PersonalChallenge::class)->where('expired', 0);
         }
+    }
+
+    public function onGoingChallenges(){
+        return $this->hasMany(PersonalChallenge::class)->where('complete', 0)->where('expired', 0);
     }
 
     public function completeChallenges(){
