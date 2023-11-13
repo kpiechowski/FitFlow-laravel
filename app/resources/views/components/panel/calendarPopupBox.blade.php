@@ -1,10 +1,17 @@
 
 
-<div class="calendarPopupBox display--none">
+<div class="calendarPopUp-wrapper display--none d-f jc-c ai-c">
 
-    <div class="activityPopup-title"></div>
-    <div class="activityPopup-date"></div>
-    <a href="" class="activityPopup-edit">Edytuj aktywność</a>
-    <a href="" class="activityPopup-delete">Usuń aktywność</a>
-
+    <div class="calendarPopupBox ">
+        
+        <div class="d-f jc-sb ai-c calendarPopupBox-title">
+            <div class="activityPopup-title"></div>
+            <div class="activityPopup-date"></div>
+            
+        </div>
+        <a href="" class="activityPopup-edit">Edytuj aktywność</a>
+        <a href="" class="activityPopup-delete">Usuń aktywność</a>
+        
+    </div>
+    
 </div>

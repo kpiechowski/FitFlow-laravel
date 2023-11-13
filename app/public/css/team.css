@@ -1,0 +1,294 @@
+.team-tabs{
+    gap:20px;
+}
+
+.team_main{
+    gap:40px;
+}
+
+.team-tab{
+    /* background-color: #f59e0b; */
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    width:100%;
+    color:#fff;
+    text-align:center;
+    font-weight:700;
+    transition:.3s;
+    border:4px solid #f59e0b;
+    cursor:pointer;
+}
+
+.team-tab:hover, .team-tab.tab-active{
+    background-color: #f59e0b;
+}
+
+.page-page{
+    display:none;
+}
+
+.page-page.page-active{
+    display:block;
+}
+
+.member-row{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding:20px 10px;
+    border-bottom: 1px solid #555;
+    background-color: #44608842;
+}
+
+.mb-options{
+    font-size:25px;
+    margin-left:15px;
+    margin-right:15px;
+    gap:8px;
+}
+
+/* .mb-options .delete{
+    color:#d34343; */
+/* } */
+
+.mb-name{
+    font-size:20px
+}
+
+.mb-name{
+    margin:0 5px 0 15px;
+}
+
+.team-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width:80%;
+    /* height: 40px; */
+    font-size:30px;
+    color:#fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: var(--font-header);
+    padding:10px 15px;
+    border-radius:8px;
+    letter-spacing: 2px;
+    text-align: center;
+    /* background-color: ; */
+}
+
+.logo-frame{
+    /* border:dashed 5px #f59e0b; */
+}
+
+.logo-frame-bg{
+    /* filter: grayscale(100%); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    gap:30px;
+    padding:10px;
+}
+
+/* listing */
+
+
+.listing-labels{
+    border-radius:8px;
+    background-color: #44608842;
+    /* margin-bottom: 15px; */
+    padding:25px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.switch-full-teams{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:16px;
+}
+
+.team-full-checkbox{
+    width:25px;
+    height: 25px;
+    background-color: #ddd;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+
+
+
+
+.team-search input {
+    height: 35px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+    background-color: var(--input-bgcolor-light);
+    border: 1px solid var(--input-border-color-light);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.team-search
+
+.label-normal{
+    flex:2;
+}
+
+.list_row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:8px 16px;
+    border-bottom:1px solid #ccc;
+    margin-bottom: 8px;
+}
+
+/* .list_row>div{
+    flex:1;
+} */
+
+.list_img_field{
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+    background-color: var(--background-main);
+    position: relative;
+    overflow: hidden;
+    margin-right:16px;
+
+}
+
+.team_img{
+    width:500px;
+}
+
+.list_img_field img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.team_name{
+
+}
+
+
+.team_info .material-icon{
+    font-size:40px;
+    margin-right:10px
+}
+
+.team-request-options{
+    gap:8px;
+}
+
+.team-request-row{
+    color:#fff;
+    font-size:18px;
+    background-color: #44608842;
+    border-bottom: 1px solid #555;
+    padding: 20px 10px;
+}
+
+
+
+@media (max-width:950px){
+    .team_img{
+        width:300px;
+    }
+    .list_img_field{
+        width:100px;
+        height: 100px;
+    }
+
+    .team-tab{
+        font-size:15px;
+    }
+    .team-name{
+        font-size: 20px;
+    }
+}
+
+
+
+@media (max-width:800px){
+    .team_main{
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+    }
+    .team_main > .w-50{
+        max-width:100%;
+        width:100%;
+    }
+}
+
+
+@media (max-width:740px){
+    .list_row{
+        flex-wrap: wrap;
+
+    }
+    .team_img{
+        width:100%;
+        margin-bottom: 20px;
+    }
+
+    .listing-labels{
+        flex-direction: column;
+        gap:20px;
+    }
+    .listing-labels>div {
+        width:100%;
+    }
+}
+
+@media (max-width:550px){
+    .team-tabs{
+        overflow-x:scroll;
+        padding-bottom: 20px;
+    }
+
+    .team-tabs .team-tab{
+        min-width:250px;
+    }
+
+    .member-row{
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    .mb-options{
+        margin-left:0;
+    }
+}
+
+@media (max-width:420px){
+    .team-search input{
+        width:100%;
+    }
+    .list_img_field{
+        margin:0 auto;
+    }
+    .team_img{
+        flex-direction: column;
+        gap:20px;
+    }
+
+    .switch-full-teams{
+        font-size:18px;
+    }
+    .team_info>div {
+        font-size:16px;
+    }
+}

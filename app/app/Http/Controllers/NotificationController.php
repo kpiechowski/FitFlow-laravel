@@ -49,6 +49,33 @@ class NotificationController extends Controller
         ]);
     }
 
+    public static function create_team_request_entry($team, $user){
+        Notification::create([
+            'user_id'=> $team->leader_id,
+            'title' => 'Prośba o dołączenie do drużyny',
+            'type' => 'team_join',
+            'message'=> "Użytkownik $user->name wysłał prośbę o dołączenie do drużyny $team->nazwa "
+        ]);
+    }
+
+    public static function create_team_join_entry($team, $user){
+        Notification::create([
+            'user_id'=> $user->id,
+            'title' => 'Zaakceptowano prośbę o dołączenie',
+            'type' => 'team_join',
+            'message'=> "Drużyna $team->nazwa zaakceptowała Twoje podanie o dołączenie do drużyny"
+        ]);
+    }
+
+    public static function create_team_reject_entry($team, $user){
+        Notification::create([
+            'user_id'=> $user->id,
+            'title' => 'Odrzucono prośbę o dołączenie',
+            'type' => 'team_join',
+            'message'=> "Drużyna $team->nazwa odrzuciła Twoje podanie o dołączenie do drużyny"
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

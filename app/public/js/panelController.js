@@ -6,6 +6,19 @@ class panelController{
         this.initNotificationTab()
         this.initProfileTab();
         this.initConfirmBox();
+        this.initMobileSideBar();
+    }
+
+    initMobileSideBar(){
+        this.switch = document.querySelector('#menu_switch');
+        this.sidebar = document.querySelector('#sidebar');
+
+        this.switch.addEventListener('click', ()=>{
+            this.switch.querySelectorAll('span').forEach(s=>{
+                s.classList.toggle('display--none');
+            });
+            this.sidebar.classList.toggle('sidebar-active');
+        });
     }
 
     initNotificationTab(){

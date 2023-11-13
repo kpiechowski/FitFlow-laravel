@@ -32,28 +32,24 @@
 
         </div>
 
-        <div class="sidebar-section el-disable">
+        <div class="sidebar-section ">
             <div class="sidebar-section-label">Drużyna</div>
 
             <div class="sidebar-elem selectable-element">
-                <a href="">Lista drużyn</a>
+                <a href="{{ url('/userPanel/teams') }}">Lista drużyn</a>
             </div>
 
-            @if(true )
+            @if($currentUserData['team_id'] !== null)
                 <div class="sidebar-elem selectable-element">
-                    <a href="">Moja drużyna</a>
+                    <a href="{{ url('userPanel/team/'.$currentUserData['team_id']) }}">Moja drużyna</a>
                 </div>
 
-                <div class="sidebar-elem selectable-element">
+                <div class="sidebar-elem selectable-element el-disable" >
                     <a href="">Wydarzenia drużynowe</a>
                 </div>
             @else
                 <div class="sidebar-elem selectable-element">
-                    <a href="">Stwórz drużynę</a>
-                </div>
-
-                <div class="sidebar-elem selectable-element">
-                    <a href="">Dołącz do drużyny</a>
+                    <a href="{{ url('userPanel/team/create') }}">Stwórz drużynę</a>
                 </div>
 
             @endif

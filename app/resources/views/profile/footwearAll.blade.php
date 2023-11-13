@@ -6,7 +6,15 @@
 @extends('layouts.userPanelLayout')
 
 @section('content_nav')
-Moje buty:
+<span class="w-100">Moje buty:</span>
+
+
+@endsection
+
+@section('resource_button')
+<div class="w-100 mt-20 d-f jc-e ai-c">
+    <a href="{{url('userPanel/footwear/add/')}}" class="challenge-add d-f jc-sb ai-c">Dodaj nowe obuwie<span class="material-icon">add_circle</span></a>
+</div>
 @endsection
 
 @section('content')
@@ -19,9 +27,9 @@ Moje buty:
         <div class="footwear-full-wrapper --scrollable w-100 d-f mt-20">
 
             @foreach ($footwear as $shoe)
-                
+
                     <x-panel.footwearElement :shoe="$shoe" />
-                
+
             @endforeach
 
         </div>

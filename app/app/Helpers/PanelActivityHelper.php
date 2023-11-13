@@ -7,12 +7,12 @@ use App\Models\ActivitiesType;
 
 class PanelActivityHelper
 {
-    function __construct(){
-        $this->user = Auth::user();
+    function __construct($id){
+        $this->user = ($id != null ) ? User::find($id) : Auth::user();
     }
 
-    public static function load(){
-        return new PanelActivityHelper();
+    public static function load($id = null){
+        return new PanelActivityHelper($id);
     }
 
     public function getLatestActivity(){
@@ -23,11 +23,11 @@ class PanelActivityHelper
         }else{
             return false;
         }
-        
+
     }
 
     public function getNewestUserActivities($max = 5){
-        $data = Auth::user()
+        $data = $this->user
         ->userActivities()
         ->select('*')
         ->orderByDesc('created_at')

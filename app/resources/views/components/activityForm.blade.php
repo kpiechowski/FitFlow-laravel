@@ -5,7 +5,7 @@
 <div class="activity-container mt-20 bg-light border-light d-f fd-c p-20 w-100">
 
 
-<form action="{{ url('/userPanel/addActivity/') }}" method="POST" id="activit-form">
+<form action="{{ url($action) }}" method="POST" id="activit-form">
     @csrf
 
     <div class="form-row w-100">
@@ -17,6 +17,7 @@
                 <option>Wybierz opcję</option>
                 @foreach ($types as $type)
 
+                
                     @if ($copy && $type->id == $copy->activityType->id)
                         <option data-slug="{{$type->slug}}" value="{{$type->id}}" selected="selected">
                             {{ $type->name }}
@@ -67,7 +68,7 @@
         <div class="form-elem w-50 display--none">
             <label for="act_footwear" id="select-shoe-value">Buty</label>
             @php 
-                // dd($copy->footwear);
+                // dd($footwear);
             @endphp
 
             <select name="act_footwear" id="act_footwear" class="input_button" >
@@ -75,7 +76,7 @@
         
                 @foreach ($footwear as $shoe)
                 <?php //ddd($shoe->id); ?>
-                    @if ($copy && $shoe->id == $copy->footwear->id)
+                    @if ($copy && $copy->footwear && $shoe->id == $copy->footwear->id)
                         <option value="{{$shoe->id}}" selected="selected">
                             {{ $shoe->name }}
                         </option>
@@ -113,7 +114,7 @@
 
 
 </form>
-
+{{-- 
 <div class="form-row w-100">
 
     <div class="form-elem w-50">
@@ -125,7 +126,7 @@
     </div>
 
 
-</div>
+</div> --}}
 
 </div>
 

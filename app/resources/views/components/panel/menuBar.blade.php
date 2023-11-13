@@ -2,7 +2,8 @@
 
     <header class="d-f jc-s ai-c">
         <div id="menu_switch" class="">
-
+            <span class="material-icon">menu</span>
+            <span class="material-icon display--none">close</span>
         </div>
 
         <div class="upper-bar-logo">
@@ -66,10 +67,11 @@
             <div class="upper-bar-profile-popup jc-c ai-c fd-c">
                 <div class="profile-popup-start"> Hello, {{ $currentUserData['name'] }}!</div>
                 <div class="profile-popup-content d-f jc-c ai-c fd-c">
-                    <div class="selectable-element"><a href="{{ url('userPanel/profile/view') }}">Profil</a></div>
-                    <div class="selectable-element"><a href="{{ url('userPanel/notification/view/') }}">Notifications</a></div>
-                    <div class="selectable-element"><a href="{{ url('userPanel/profile/friends') }}">Friends</a></div>
-                    <div class="selectable-element"><a href="{{ url('/logout') }}">Logout</a></div>
+                    <div class="selectable-element"><a href="{{ url('userPanel/profile/view') }}"><span class="material-icon">person</span>Profil</a></div>
+                    <div class="selectable-element"><a href="{{ url('/userPanel/footwear/') }}"><span class="material-icon">steps</span>Obuwie</a></div>
+                    <div class="selectable-element"><a href="{{ url('userPanel/notification/view/') }}"><span class="material-icon">notifications</span>Powiadomienia</a></div>
+                    <div class="selectable-element"><a href="{{ url('userPanel/friends') }}"><span class="material-icon">groups</span>Znajomi</a></div>
+                    <div class="selectable-element"><a href="{{ url('/logout') }}"><span class="material-icon">logout</span>Wyloguj się</a></div>
                 </div>
             </div>
         </div>

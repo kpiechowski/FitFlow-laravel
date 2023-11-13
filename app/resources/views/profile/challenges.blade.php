@@ -7,7 +7,7 @@ Wyzwania
 @section('resource_button')
 
 <div class="w-100 mt-20 d-f jc-e ai-c">
-    <a href="{{url('userPanel/challenges/add/')}}" class="challenge-add d-f jc-sb ai-c">Dodaj nowe wyzwanie <span class="material-icon">add_circle</span></a>
+    <a href="{{url('userPanel/challenges/add/')}}" class="challenge-add d-f jc-sb ai-c">Dodaj wyzwanie <span class="material-icon">add_circle</span></a>
 </div>
 @endsection
 
@@ -46,7 +46,7 @@ Wyzwania
 
     @if ($completed->isEmpty())
         <div class="challenge-empty w-100 p-40">Brak wyzwań do wyświetlenia</div>
-    @else 
+    @else
         @foreach ($completed as $chall)
             <x-panel.challenge :obj="$chall" :panelHelper="$panelActivityHelper" />
         @endforeach

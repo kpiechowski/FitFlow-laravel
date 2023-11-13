@@ -35,10 +35,13 @@
         <x-msgPopup />
         <x-confirmBox />
 
+        @yield('globals')
+        {{-- @dd($userHasTeam) --}}
+
         <div class="page-main-content-wrapper d-f wrap " >
             <x-panel.menuBar :currentUserData="$currentUserData" :newNotifications="$newNotifications" />
 
-            <x-panel.menuSidebar  />
+            <x-panel.menuSidebar :currentUserData="$currentUserData" />
 
             <main class="d-f jc-c ai-s" id="main" >
 

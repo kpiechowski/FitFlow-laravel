@@ -4,7 +4,7 @@
 // dd($data);
 @endphp
 
-<div class="element-100 bg-light p-10 el-round color-white" data-aos="fade-up" data-aos-duration="1000">
+<div class="element-100 newAc bg-light p-10 el-round color-white" >
 
     <div class="element-title w-100 d-f jc-sb ai-c">
         <div>Najnowsze aktywności</div>
@@ -17,7 +17,7 @@
         <div class="newAc-header-label label-wide">Tytuł</div>
         <div class="newAc-header-label">Czas trwania</div>
         <div class="newAc-header-label">Wartość</div>
-        <div class="newAc-header-label label-wide">Opis</div>
+        <div class="newAc-header-label label-wide desc-type">Opis</div>
 
     </div>
 
@@ -39,7 +39,7 @@
                     <a class="newAc-content-field label-wide" href="{{ url('/userPanel/panel/' . $item->id . '/view') }}"> {{ $item->title }}</a>
                     <div class="newAc-content-field">{{ $item->total_time }}</div>
                     <div class="newAc-content-field">{{ $item->value }}</div>
-                    <div class="newAc-content-field label-wide">{{ $item->description }}</div>
+                    <div class="newAc-content-field label-wide desc-type">{{ $item->description }}</div>
 
                 </div>
             @endforeach

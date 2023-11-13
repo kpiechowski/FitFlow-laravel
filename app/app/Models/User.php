@@ -49,7 +49,29 @@ class User extends Authenticatable
     public function getUserProfileIcon(){
 
     }
-    
+
+
+    public function getUserData(){
+
+        if($this->photo){
+            $url = url('images/userImage/' . $this->id() . 'profileIcon.webp');
+            $userIconType = 'userIcon--photo';
+            $content = "<img src='$url' loading='lazy' alt='UserIcon' >";
+        }else{
+            $userIconType = 'userIcon--letters';
+            $content = substr($this->name,0,1);
+
+        }
+
+
+        return [
+            'name'=> $this->name,
+            'desc'=> $this->description,
+            'team_id'=> $this->team_id,
+            'iconType' => $userIconType,
+            'iconContent' => $content,
+        ];
+    }
 
     public function userActivities()
     {
@@ -65,16 +87,32 @@ class User extends Authenticatable
         return $this->hasMany(Footwear::class);
     }
 
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id_1', 'user_id_2')
+            ->wherePivot('status', true);
+    }
+
+    public function friendRequests()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id_1', 'user_id_2')
+            ->wherePivot('status', false);
+    }
+
+
+    public function removeFriend(User $f){
+        $this->friends()->detach($f);
+    }
 
     // wyzwania
-     
+
     public function challenges(){
         return $this->hasMany(PersonalChallenge::class);
     }
 
     public function activeChallenges($ac_type = 0){
 
-        if($ac_type != 0){ 
+        if($ac_type != 0){
             return $this->hasMany(PersonalChallenge::class)
                 ->where(function ($query) use ($ac_type) {
                     $query->where('expired', 0)
@@ -99,6 +137,11 @@ class User extends Authenticatable
 
     public function expiredChallenges(){
         return $this->hasMany(PersonalChallenge::class)->where('expired', 1);
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
     }
 
 

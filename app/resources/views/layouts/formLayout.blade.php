@@ -25,7 +25,8 @@
         <div class="section-1000 p-20 d-f jc-c">
 
             <div class="login-img-cont w-50">
-                <img src="asd" alt="">
+                {!! file_get_contents(public_path('images/login/login-icon.svg')) !!}
+                {{-- <img src="{{ asset('images/login/login-icon.svg') }}" alt=""> --}}
             </div>
 
 
@@ -38,3 +39,5 @@
 
 </body>
 </html>
+
+

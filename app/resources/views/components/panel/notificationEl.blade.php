@@ -6,7 +6,8 @@
 
     $notif_type = [
         'activity' => ['directions_run', 'Aktywność'],
-        'challenge' => ['trophy', 'Wyzwanie']
+        'challenge' => ['trophy', 'Wyzwanie'],
+        'team_join' => ['groups', 'Drużyna'],
     ];
 
 @endphp

@@ -58,13 +58,13 @@ class summaryControler{
 
             let start = start_y + "-" + start_m;
             let end = end_y + "-" + end_m;
-            
+
             this.summaryCharts.generic.destroy();
 
             this.prepareGenericChart(start, end);
         });
     }
-    
+
 
     fetchAndReturnJSON(link){
         let json = fetch(link).then(response=>{
@@ -73,9 +73,9 @@ class summaryControler{
         }).then(data=>{
             return data;
         }).catch(er=>{
-            
+
         });
-        
+
         return json;
     }
 
@@ -96,7 +96,7 @@ class summaryControler{
             },
             options: chartData.options
         });
-            
+
     }
 
 
@@ -108,12 +108,16 @@ class summaryControler{
         const chart_labels = [];
         const chart_data = [];
 
+        let cont =  document.querySelector('#chart-all-ac-timeline');
+
+        let fetch_link = (cont.hasAttribute('data-acType')) ? '/userPanel/panel/getUserActivityPerMonthChartType/'+cont.getAttribute('data-acType') : '/userPanel/panel/getUserActivityPerMonthChartAll';
+
         let chart_all = {
-            json: await this.fetchAndReturnJSON('/userPanel/panel/getUserActivityPerMonthChartAll'),
-            cont: document.querySelector('#chart-all-ac-timeline'),
+            json: await this.fetchAndReturnJSON(fetch_link),
+            cont:cont,
             type: 'line',
         };
-        
+
         let currentDate = startDate;
         while (currentDate <= endDate) {
             chart_labels.push(currentDate);
@@ -136,6 +140,8 @@ class summaryControler{
         }];
 
         chart_all.options = { // options
+            maintainAspectRatio: false,
+            responsive: false,
             scales: {
                 x: {
                     title:{
@@ -188,6 +194,151 @@ class summaryControler{
 
 
 
+    initYearSlider(currentYear) {
+        let index = document.querySelector('.year-summary-wrapp[data-year="'+currentYear+'"]').getAttribute('data-index');
+        const yearSlider = new Siema({
+            selector: document.querySelector('.year-summary-slider-wrapper'),
+            duration: 200,
+            easing: 'ease-out',
+            perPage: 1,
+            startIndex: index,
+            draggable: true,
+            multipleDrag: false,
+            threshold: 20,
+            loop: false,
+            rtl: false,
+            onInit: () => {this.displayYearInfoCharts(index)},
+            onChange: () => {this.displayYearInfoCharts(yearSlider.currentSlide)},
+        });
+
+        document.querySelector('#year-slider-prev').addEventListener('click',()=>{
+            yearSlider.prev();
+        });
+
+
+        document.querySelector('#year-slider-next').addEventListener('click',()=>{
+            yearSlider.next();
+        });
+    }
+
+
+    displayYearInfoCharts(index){
+        console.log(index);
+        let slide = document.querySelector('.year-summary-wrapp[data-index="'+index+'"]');
+        let year = slide.getAttribute('data-year');
+
+
+        if(slide.hasAttribute('data-loaded')){
+            return;
+        }
+
+        fetch('/userPanel/panel/getUserActivityTypesChart/'+year)
+        .then(response=>{
+            if(response.ok) return response.json();
+            else throw new Error('Błąd sieciowy: ' + response.status);
+        })
+        .then(charData=>{
+            // console.log()
+            slide.setAttribute('data-loaded', 'true');
+            var maxValue = Math.max(...charData.data) + 2;
+            var cont = slide.querySelector('#activityTypeChart').getContext('2d');
+            slide.querySelector('#activityTypeChart').parentNode.querySelector('.load').classList.add('display--none');
+            var myChart = new Chart(cont, {
+                type: 'bar',
+                data: {
+                    labels: charData.labels,
+                    datasets: [{
+                        // label: 'Ilość na rok '+ new Date().getFullYear(),
+                        label: '',
+                        legendHidden: true,
+                        data: charData.data,
+                        backgroundColor: [
+                            'rgba(245, 158, 211, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(25, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+
+                        ],
+                        borderColor: [
+                            '#ccc'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            max: maxValue,
+                            // beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+
+                        }
+                    }
+                }
+            });
+        });
+
+        fetch('/userPanel/panel/getUserActivityPerMonthChart/'+year)
+        .then(response=>{
+            if(response.ok) return response.json();
+            else throw new Error('Błąd sieciowy: ' + response.status);
+        })
+        .then(charData=>{
+            var numericValues = charData.data.filter(value => typeof value === 'number');
+            var maxValue = Math.max(...numericValues);
+            maxValue+=3;
+
+            slide.querySelector('#perMonthChar-current-title').computedStyleMap.display = "none";
+
+            var cont = slide.querySelector('#activityPerMonthChart').getContext('2d');
+            slide.querySelector('#activityPerMonthChart').parentNode.querySelector('.load').classList.add('display--none');
+            var myChart = new Chart(cont, {
+                type: 'line',
+                data: {
+                    labels: polishMonthsShort,
+                    datasets: [{
+                        // label: 'Ilość na rok '+ new Date().getFullYear(),
+                        label: '',
+                        legendHidden: true,
+                        data: charData.data,
+                        borderColor: [
+                            '#d4a428'
+                        ],
+                        backgroundColor:'#f59f0b11',
+                        borderWidth: 4,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            max: maxValue,
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+
+                        }
+                    }
+                }
+            });
+        });
+
+    }
+
+
 }
 
 
@@ -203,10 +354,14 @@ const summaryC = new summaryControler();
 
 document.addEventListener('DOMContentLoaded', ()=>{
 
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+
 
     summaryC.init();
     let start = "2023-01", end = "2023-12";
     summaryC.prepareGenericChart(start, end);
+
 
     // const datepicker = new DatePicker("#myDatePicker", {
     //     autohide: true, // Opcjonalne: Automatycznie ukrywaj date picker po wyborze daty
@@ -214,9 +369,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     //   });
 
 
-    
-    
-    
+    // init slider for year statistic
+    summaryC.initYearSlider(currentYear);
+
+
 
 
 });
@@ -231,14 +387,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
     // (async ()=>{
-        
+
     //     let chart_all = {
     //         json: await summaryC.fetchAndReturnJSON('/userPanel/panel/getUserActivityPerMonthChart'),
     //         cont: document.querySelector('#chart-all-ac-timeline'),
     //         type: 'line',
     //         labels: polishMonthsShort,
     //     };
-        
+
     //     // let numericValues = chart_all.json.data.filter(value => typeof value === 'number');
     //     chart_all.maxValue = Math.max(...chart_all.json.data.filter(value => typeof value === 'number')) + 2;
 
@@ -252,7 +408,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     //         ],
     //         borderWidth: 1
     //     }];
-        
+
 
     //     chart_all.options = { // options
     //         scales: {
@@ -272,7 +428,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     //         }
     //     };
 
-        
+
     //     console.log(chart_all);
     //     summaryC.displayChart(chart_all);
 

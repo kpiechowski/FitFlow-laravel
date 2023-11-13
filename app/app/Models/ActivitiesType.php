@@ -30,5 +30,11 @@ class ActivitiesType extends Model
         return $this->HasMany(UserActivity::class, 'activity_type_id')->where('user_id', $id);
     }
 
+    public function getActivitiesByUserAndYear($id, $year){
+        return $this->HasMany(UserActivity::class, 'activity_type_id')
+        ->where('user_id', $id)
+        ->whereYear('add_date', '=', $year);
+    }
+
 
 }

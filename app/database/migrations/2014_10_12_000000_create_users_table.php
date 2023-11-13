@@ -23,7 +23,7 @@ return new class extends Migration
             // app info
             $table->text('description')->nullable();
             $table->foreignId('team_id')->nullable();
-            $table->boolean('photo')->nullable();
+            $table->string('photo')->nullable();
         });
     }
 

@@ -16,8 +16,52 @@
 .profile-image-holder{
     width:100%;
     height: 100%;
+    position: relative;
 
-}   
+}
+
+
+.profile-image-edit{
+    width: 100%;
+    height: 100%;
+    background-color: #0000008c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:  30px;
+    position: absolute;
+    left:0;
+    top:0;
+    display: none;
+}
+
+
+
+.input-image-holder{
+    width:300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    border:4px solid var(--background-main);
+    margin:20px auto;
+}
+
+.input-image-holder img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+
+
+
+
+.profile-image-holder:hover .profile-image-edit{
+    display: flex;
+}
 
 .profile-image-holder.userIcon--letters{
     font-size:100px;
@@ -50,7 +94,7 @@
 }
 
 .profile-info-row{
-    
+
 }
 
 .element-row{}
@@ -63,7 +107,7 @@
 .profile-section-content .key{
     /* text-decoration: underline; */
     color:var(--backgound-main);
-    
+
 }
 
 
@@ -355,7 +399,7 @@
     background-color: var(--background-main);
     color:white;
     font-size:20px;
-    
+
     text-transform: uppercase;
     border:1px solid #222;
     /* box-shadow: 0px 0px 1px 1px #ccc; */
@@ -405,7 +449,7 @@
     justify-content: center;
     align-items: center;
     font-size:70px;
-    
+
 }
 
 .challenge-name-wrapp{
@@ -413,7 +457,7 @@
 }
 
 .challenge-name{
-    
+
     font-size: 28px;
 }
 .challenge-type{
@@ -535,7 +579,7 @@
 .ac_types_wrapper:hover  > *:hover {
     transform: scale(1.1);
     opacity: 1;
-} 
+}
 
 
 
@@ -548,10 +592,20 @@
     background-color: var(--background-light-blue);
 }
 
+
 .ac_type_icon span{
     font-size:70px;
     color: white;
     /* font-weight: 900; */
+}
+
+.ac_type_icon.large{
+    width:220px;
+    height: 220px;
+}
+
+.ac_type_icon.large span{
+    font-size:180px;
 }
 
 .ac_name{
@@ -620,7 +674,7 @@
     align-items: center;
     /* border: 5px solid var(--panel-dark); */
     color:var(--background-main)
-    
+
 }
 .generic-value.small{
     font-size:26px;
@@ -747,7 +801,7 @@
     height: 40px;
     font-size:28px;
     margin-bottom: 5px;
-    
+
 }
 
 .date-config-popup input{
@@ -786,7 +840,7 @@
 
 
 .ac-row-name{
-    font-size:20px;
+    font-size:23px;
 }
 
 .ac-row-icon{
@@ -828,4 +882,287 @@
     margin-left: 8px;
     font-size:20px;
     color:var(--background-main)
+}
+
+
+.year-summary-wrapp {
+    background-color: #44608842;
+    border-radius: 8px;
+    position: relative;
+}
+
+.year-summary-year{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size:120px;
+    color:var(--background-main);
+    opacity: .3;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+.year-summary-wrapp .element-title{
+    font-size: 20px;
+}
+
+.year-slider-arrows{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size:45px;
+    margin-bottom: 10px;
+    gap:20px;
+
+}
+
+.year-slider-arrows span{
+    cursor: pointer;
+    color:var(--background-main);
+
+}
+
+
+
+.footwer-ranking{
+    gap:10%;
+}
+
+
+.footwear-podium{
+    width:150px;
+}
+
+.footwear-box-holder{
+    /* width:20%; */
+    background-color: #44608842;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 4px solid var(--background-main);
+}
+
+.footwear-first .footwear-box-holder{
+    height: 300px;
+}
+
+.footwear-second .footwear-box-holder{
+    height: 200px;
+}
+
+.footwear-third .footwear-box-holder{
+    height: 100px;
+}
+
+
+/* friends */
+
+.friends-search-bar{
+    background-color: #44608842;
+    border-radius: 8px;
+    background-color: #44608842;
+    /* margin-bottom: 15px; */
+    padding: 25px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.friends-search-bar input {
+    height: 35px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+    background-color: var(--input-bgcolor-light);
+    border: 1px solid var(--input-border-color-light);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.f-options{
+    gap:8px;
+}
+
+
+
+.friends-search-content.active{
+    min-height: 150px;
+    margin:20px auto;
+    width:100%;
+    padding:20px;
+    border-radius:8px;
+    background-color:#44608842;
+}
+
+
+
+
+
+
+
+@media(max-width:1150px){
+    .ac_type_box{
+        flex-basis: 40%;
+    }
+    .profile-section-content p{
+        font-size: 15px;
+    letter-spacing: 1.8px;
+    margin: 10px 0;
+    }
+
+    .challenge-box-icon {
+        width: 60px;
+        height: 60px;
+        font-size:35px;
+    }
+
+    .challenge-name{
+        font-size:18px;
+    }
+    .challenge-type{
+        font-size:15px
+    }
+    .challenge-box-check{
+        font-size:65px;
+    }
+    .year-summary-wrapp .element-title{
+        font-size:15px;
+    }
+
+    .generic-txt{
+        font-size:16px;
+        line-height: 20px;
+    }
+    .generic-el{
+        flex-basis:48%;
+        border:unset !important;
+    }
+    .generic-el-wrapper{
+        flex-wrap: wrap;
+        gap:20px;
+    }
+}
+
+
+@media (max-width:900px){
+
+    .ac_type_icon.large{
+        width:120px;
+        height: 120px;
+    }
+    .w-50.expand-mobile{
+        width:80%;
+    }
+    .ac_type_icon.large span{
+        font-size:70px;
+    }
+    .chart-title{
+        font-size:16px;
+    }
+    .chart-container canvas{
+        width:1000px !important;
+
+        height: 400px !important;
+    }
+    .chart-container{
+        overflow-x: scroll;
+        padding-bottom: 20px;
+    }
+
+    .challenge-box-info b{
+        font-size:18px;
+    }
+    .challenge-box-info{
+        font-size:15px;
+    }
+    .generic-title{
+        font-size: 18px;
+    }
+    .year-summary-year{
+        font-size:60px;
+    }
+    .year-summary-wrapp .w-50{
+        width:65%;
+    }
+}
+
+
+
+@media (max-width:700px){
+    .ac-row-name{
+        font-size:18px;
+    }
+    .ac-stat-name, .ac-stat-value{
+        font-size: 15px;
+    }
+    .ac-stat-row{
+        padding-left:0;
+        margin:10px auto
+    }
+    .ac_type_box{
+        flex-basis: 90%;
+    }
+    .challenge-box-body{
+        flex-direction: column;
+
+    }
+    .challengebox-desc {
+        /* box-shadow: var(--border-blue); */
+        border-top: 2px solid var(--background-main);
+        border-left:unset;
+    }
+
+    .challenge-box-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap:10px;
+    }
+    .challenge-name-wrapp{
+        margin-left: 0 !important;
+    }
+    .challenge-box-info, .challengebox-desc{
+        padding:10px 0 !important;
+    }
+    .challenge-box-bottom{
+        flex-direction: column;
+        align-items: flex-start;
+        gap:10px;
+        padding:0;
+    }
+
+    .challenge-add{
+        font-size:16px;
+        padding:8px;
+    }
+    .challenge-title{
+        font-size:18px;
+    }
+
+    .year-summary-wrapp .w-50{
+        margin-top:60px;
+        width:100%;
+    }
+}
+
+
+@media (max-width:650px){
+    .generic-main-type{
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap:5px
+    }
+    .generic-main-type .w-50{
+        width: 100%;
+    }
+}
+
+@media (max-width:420px){
+    .ac-row-name{
+        font-size:14px;
+    }
+    .ac-stat-name, .ac-stat-value{
+        font-size: 13px;
+    }
 }

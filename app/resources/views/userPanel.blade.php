@@ -23,7 +23,7 @@ Panel
 
 @endphp
 
-
+    {{-- @dump( $userHasTeam) --}}
     <div class="element-row d-f jc-sb  w-100 ai-st">
         <x-panel.welcomeUserBar :currentUserData="$currentUserData" />
         <x-panel.latestActivity :la="$la" />

@@ -48,6 +48,23 @@ a:hover{
     'opsz' 48
 }
 
+.material-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    background-color: var(--background-main);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.material-button:hover{
+    opacity:0.8;
+}
+
 
 
 .d-f{
@@ -166,6 +183,9 @@ a:hover{
     margin-right: 10px;
 }
 
+.ml-5{
+    margin-left: 5px;
+}
 .ml-10{
     margin-left: 10px;
 }
@@ -173,6 +193,9 @@ a:hover{
     margin-left: 20px;
 }
 
+.mb-10{
+    margin-bottom:10px;
+}
 .text-center{
     text-align: center;
 }
@@ -232,4 +255,13 @@ a:hover{
 
 .el-hide{
     opacity:0;
+}
+
+
+
+@media (max-width:740px){
+    .section-1360{
+        padding:10px !important;
+
+    }
 }

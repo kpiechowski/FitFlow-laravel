@@ -22,26 +22,7 @@ class UserActivityController extends Controller
     /**
      * Display a calendar of the resource.
      */
-    public function index_calendar()
-    {
 
-        $month = date('m');
-
-        $data = Auth::user()->userActivities()->whereMonth('created_at',$month)->get();
-        $events = [];
-
-        foreach($data as $elem){
-            $events[]=[
-                'title' => $elem->title,
-                'start' =>$elem->add_date,
-                'end' => $elem->add_date,
-                'id' => $elem->id
-            ];
-        }
-
-        //
-        return view('calendarAcitvities', ['jsonCurrentMonth' => $events]);
-    }
 
     /**
      * Display a listing of the resource.
@@ -107,13 +88,14 @@ class UserActivityController extends Controller
         // dd($footwear);
 
 
-        return view('activityAdd', 
+        return view('activityAdd',
             [
             'date'=>$date,
             'types'=>$types,
             'acGrouped' =>$ac_grouped_to_copy,
             'copy' => $copy_ac,
-            'footwear' => $footwear
+            'footwear' => $footwear,
+            'action' => '/userPanel/addActivity/'
             ]
         );
     }
@@ -195,15 +177,72 @@ class UserActivityController extends Controller
      */
     public function edit(UserActivity $userActivity)
     {
+        // dd($userActivity);
         //
+        $date = $userActivity->add_date;
+
+        $types = ActivitiesType::all();
+        $ac_grouped_to_copy = Auth::user()
+        ->userActivities()
+        ->select('*')
+        ->orderBy('add_date', 'desc')
+        ->get()
+        ->unique('activity_type_id');
+        // ->orderByRaw('created_at DESC')
+        // ->groupBy('activity_type_id')
+        // dd($ac_grouped_to_copy);
+
+        if($ac_grouped_to_copy->count() == 0){
+            $ac_grouped_to_copy = false;
+        }
+
+        $copy_ac = Auth::user()
+        ->userActivities()
+        ->where('id', $userActivity->id)
+        ->first();
+
+        $footwear = Auth::user()->footwear()->get();
+        // dd($footwear);
+
+
+        return view('activityAdd',
+            [
+            'date'=>$date,
+            'types'=>$types,
+            'acGrouped' =>$ac_grouped_to_copy,
+            'copy' => $copy_ac,
+            'footwear' => $footwear,
+            'action' => '/userPanel/panel/'.$userActivity->id.'/update'
+            ]
+        );
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserActivity $userActivity)
+    public function update(Request $req, UserActivity $userActivity)
     {
         //
+
+        // d('test');
+        $userActivity->title = $req->get('ac_name');
+        $userActivity->activity_type_id = $req->get('act_type');
+        $userActivity->add_date = $req->get('act_start');
+        $userActivity->total_time = $req->get('act_time');
+        $userActivity->value = $req->get('act_value');
+        $userActivity->footwear_id = $req->get('act_footwear');
+        $userActivity->description = $req->get('desc');
+
+        $userActivity->save();
+        // dd($userActivity);
+        return redirect('userPanel/panel')->with('message', 'Pomyślnie zaktualizowano wpis');
+
+
+        // ZMIENIĆ LICZNIK W OBECNYCH I WCZESNIEJSZYCH BUTACH JEŻELI INNE
+
+        // ZMIENIĆ RÓWNIEŻ DANE WYZWANIA JEŚLI ZMIENIA
+
     }
 
     /**
@@ -212,23 +251,54 @@ class UserActivityController extends Controller
     public function destroy(UserActivity $userActivity)
     {
         //
+        if($userActivity && Auth::user()->id == $userActivity->user_id){
+            $userActivity->delete();
+            return redirect('userPanel/panel')->with('message', 'Pomyślnie usunięto');
+        }else{
+            return redirect('userPanel/panel');
+        }
+
     }
 
 
 
+    public function index_calendar()
+    {
 
+        $month = date('m');
+
+        $data = Auth::user()->userActivities()->get();
+        $events = [];
+
+        foreach($data as $elem){
+            $events[]=[
+                'title' => $elem->title,
+                'start' =>$elem->add_date,
+                'end' => $elem->add_date,
+                'id' => $elem->id
+            ];
+        }
+
+        //
+
+        return view('calendarAcitvities', ['jsonCurrentMonth' => $events, 'jsonF' => $this->getJsonByMonth(date('Y'), date('m'))] );
+    }
 
     // additional methods
-    public function getJsonByMonth($monthNumber){
+    public function getJsonByMonth($year,$monthNumber){
 
-        $data = UserActivity::whereMonth('created_at',$monthNumber)->get();;
+        $data = UserActivity::whereMonth('add_date',$monthNumber)
+        ->whereYear('add_date', $year)
+        ->get();
+
         $events = [];
 
         foreach($data as $elem){
             $events[]=[
                 'title' => "$elem->title",
                 'start' => "$elem->add_date",
-                'end' => "$elem->add_date"
+                'end' => "$elem->add_date",
+                'id' => $elem->id
             ];
         }
 
@@ -248,7 +318,7 @@ class UserActivityController extends Controller
 
         $data = Auth::user()
         ->userActivities()
-        ->whereYear('created_at', '=', $year)
+        ->whereYear('add_date', '=', $year)
         ->select('activity_type_id', DB::raw('COUNT(id) as amountCount'))
         ->groupBy('activity_type_id')
         ->orderBy('activity_type_id')
@@ -270,7 +340,7 @@ class UserActivityController extends Controller
 
         $data = Auth::user()
         ->userActivities()
-        ->whereYear('created_at', '=', $year)
+        ->whereYear('add_date', '=', $year)
         ->select(DB::raw('MONTH(add_date) as month, COUNT(id) as amountCount'))
         ->groupBy(DB::raw('MONTH(add_date)'))
         ->get();
@@ -310,6 +380,28 @@ class UserActivityController extends Controller
 
         return json_encode($month_info);
 
+    }
+
+    public function getActivityCountPerMonthType(ActivitiesType $ActivitiesType){
+        $data = Auth::user()
+        ->userActivities()
+        ->select(DB::raw('MONTH(add_date) as month, YEAR(add_date) as year , COUNT(id) as amountCount'))
+        // ->groupBy(DB::raw('MONTH(add_date)'))
+        ->where('activity_type_id', $ActivitiesType->id)
+        ->groupBy('year', 'month')
+        ->get();
+
+        $month_info = [];
+
+        foreach ($data as $row) {
+            $month = ($row->month < 10) ? "0".$row->month : $row->month;
+            $label = $row->year.'-'.$month;
+            $month_info[$label] = $row->amountCount;
+
+        }
+
+
+        return json_encode($month_info);
     }
 
 }
