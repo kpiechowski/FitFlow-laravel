@@ -122,7 +122,7 @@
             <div>Statystyki</div>
         </div>
 
-        <div class="bg-light element-row el-round  p-20 w-100" data-aos="fade-up" data-aos-duration="1000">
+        <div class="bg-light element-row el-round  p-20 w-100">
 
             <div class="text-center w-100 d-f jc-c ai-c stat-row-title">Miesięczne</div>
             <div class="profile-stat-row w-100 d-f jc-c mt-50">

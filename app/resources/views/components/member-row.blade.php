@@ -10,7 +10,7 @@
     <div class="d-f ai-c">
         <div class="mb-icon upper-bar-profile-icon d-f jc-c ai-c {{ $data['iconType'] }}">
             {{-- <img src="{{ asset('storage/teams/'. $team->logo) }}" style="border-radius:15px; max-height:300px;" class="el-round bg-light" alt="" loading="lazy"> --}}
-            {{ $data['iconContent'] }}
+            {!! $data['iconContent'] !!}
         </div>
 
         <div class="mb-name">
@@ -27,7 +27,7 @@
             <div class="mb-option delete material-button" data-action="delete" title="Usuń z drużyny"><span class="material-icon">group_remove</span></div>
         @endif
 
-        <a href="" class="material-button" title="Zobacz profil"><span class="material-icon">person</span></a>
+        <a href="{{ url('userPanel/profile/view/'.$member->id ) }}" class="material-button" title="Zobacz profil"><span class="material-icon">person</span></a>
     </div>
 
 </div>

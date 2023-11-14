@@ -57,6 +57,26 @@
 
         </div>
 
+        @if($currentUserData['user']->isAdmin)
+
+        <div class="sidebar-section ">
+            <div class="sidebar-section-label">Administracja</div>
+
+            <div class="sidebar-elem selectable-element">
+                <a href="{{ url('/admin/reports') }}">Zgłoszenia</a>
+            </div>
+
+            <div class="sidebar-elem selectable-element">
+                <a href="{{ url('/admin/user/list') }}">Lista użytkowników</a>
+            </div>
+
+            <div class="sidebar-elem selectable-element">
+                <a href="{{ url('/admin/user/list') }}">Zablokowani użytkownicy</a>
+            </div>
+
+        </div>
+        @endif
+
     </div>
 
 </nav>

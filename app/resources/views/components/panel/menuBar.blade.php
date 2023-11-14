@@ -24,7 +24,7 @@
         <div id="notification-container">
             <div class="w-100 d-f fd-c ai-s p-0-20">
                 <div id="notification-close">+</div>
-                <div class="notification_title section-title-txt">Notifications:</div>
+                <div class="notification_title section-title-txt">Powiadomienia:</div>
                 <div class="w-100 mt-10 d-f ai-c jc-s wrap notification_options">
                     <div id="notification-read-all" class="selectable-element-small">Odznacz wszystkie</div>
                     <div id="notification-see-all" class="selectable-element-small">
@@ -44,7 +44,7 @@
 
                 @else
 
-                    <div class="notification_title w-100 d-f jc-c">No new notifications here</div>
+                    <div class="notification_title w-100 d-f jc-c">Brak nowych powiadomień</div>
 
                 @endif
 
@@ -62,7 +62,7 @@
 
         <div class="upper-bar-profile d-f jc-c ai-c">
             <div class="upper-bar-profile-icon {{ $currentUserData['iconType'] }} d-f jc-c ai-c">
-                {{ $currentUserData['iconContent'] }}
+                {!! $currentUserData['iconContent'] !!}
             </div>
             <div class="upper-bar-profile-popup jc-c ai-c fd-c">
                 <div class="profile-popup-start"> Hello, {{ $currentUserData['name'] }}!</div>

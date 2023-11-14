@@ -1003,6 +1003,9 @@
 
 
 @media(max-width:1150px){
+    .stat-el-title, .stat-el-desc{
+        font-size:15px;
+    }
     .ac_type_box{
         flex-basis: 40%;
     }
@@ -1042,6 +1045,25 @@
     .generic-el-wrapper{
         flex-wrap: wrap;
         gap:20px;
+    }
+}
+
+@media (max-width:950px){
+    .profile-stat-el{
+        flex: 0 0 48%;
+    }
+    .profile-stat-row{
+        flex-wrap: wrap;
+    }
+    .profile-section-50{
+        width:100%;
+        max-width:100%;
+    }
+
+    .profile-portrait{
+        width:150px;
+        height: 150px;
+        top:-80px;
     }
 }
 
@@ -1148,6 +1170,16 @@
 
 
 @media (max-width:650px){
+    .confirm-box-button{
+        font-size:16px;
+        padding:8px;
+    }
+    .stat-el-title, .stat-el-desc{
+        font-size:13px;
+    }
+    .profile-stat-el {
+        flex: 0 0 98%;
+    }
     .generic-main-type{
         flex-direction: column-reverse;
         align-items: flex-start;

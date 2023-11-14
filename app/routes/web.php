@@ -16,6 +16,7 @@ use App\Http\Controllers\PersonalChallengeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamRequestController;
 use App\Http\Controllers\FriendshipController;
+use App\Http\Controllers\AdminController;
 
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -47,13 +48,26 @@ Route::post('/authenticate', [UserController::class, 'authenticateUserOrError'])
 Route::get('/register', function(){  return view('register'); })->name('register');
 Route::post('/registerUser', [UserController::class, 'registerUserOrError'])->name('registerUser');
 
+
+
+// admin routes
+
+
+Route::middleware(['admin'])->group(function(){
+
+    Route::get('/admin/reports', [AdminController::class, 'reports']);
+
+
+
+});
+
+
+
 Route::middleware([Authenticate::class])->group(function () {
 
     Route::get('/logout', [UserController::class, 'logOutUser']);
 
-    Route::get('/test', function(){
-        return 'lol';
-    });
+
 
 
     Route::any('/home1', function(){

@@ -62,6 +62,7 @@ class UserHelper
         $total_time = $this->convertMinutesToDHM($total_time);
 
         return [
+            'user'=> $user,
             'name'=> $user->name,
             'desc'=> $user->description,
             'team_id'=> $user->team_id,

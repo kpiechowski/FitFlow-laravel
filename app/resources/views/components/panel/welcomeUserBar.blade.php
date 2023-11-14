@@ -5,7 +5,7 @@
 
     <div class="element-50 p-10 d-f jc-s ai-c">
         <div class="upper-bar-profile-icon {{ $currentUserData['iconType'] }} d-f jc-c ai-c mr-10">
-            {{ $currentUserData['iconContent'] }}
+            {!! $currentUserData['iconContent'] !!}
         </div>
         <div >
             Witaj!<br>

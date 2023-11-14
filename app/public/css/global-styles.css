@@ -344,15 +344,30 @@ background: linear-gradient(90deg, rgba(0,0,0,0) 10%, rgb(235, 125, 22) 50%, rgb
     width:50px;
     height:50px;
     border-radius: 50%;
+    overflow: hidden;
     /* border:1px solid var(--border-color-main); */
 
 }
+
+.userIcon--photo{
+    border:2px solid var(--background-main)
+}
+
+.upper-bar-profile-icon.userIcon--photo img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 .upper-bar-profile-icon.userIcon--letters{
     background-color: var(--panel-dark);
     color: var(--border-color-main);
     font-size: 1.6pc;
 }
+
+
+
 
 .upper-bar-profile-popup{
     display: none;
