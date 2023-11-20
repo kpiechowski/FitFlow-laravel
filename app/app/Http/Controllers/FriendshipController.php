@@ -57,6 +57,14 @@ class FriendshipController extends Controller
 
 
     public function sendRequest(User $user){
+
+        $exists =Friendship::where('user_id_1', Auth::user()->id)
+        ->where('user_id_2', $user->id)->first();
+
+        if($exists){
+            return redirect()->back()->with('message', 'Wysłano już zaproszenie do tego uzytkownika');
+        }
+
         $f = new Friendship;
 
         $f->user_id_1 = Auth::user()->id;

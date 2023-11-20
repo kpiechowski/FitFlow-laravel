@@ -42,6 +42,11 @@ Route::any('/home', function(){
 
 
 
+Route::fallback(function () {
+    return redirect('/userPanel/panel/');
+});
+
+
 Route::get('/login', [UserController::class, 'loginPageOrRedirect'])->name('login');
 Route::post('/authenticate', [UserController::class, 'authenticateUserOrError'])->name('authenticate');
 
@@ -56,6 +61,11 @@ Route::post('/registerUser', [UserController::class, 'registerUserOrError'])->na
 Route::middleware(['admin'])->group(function(){
 
     Route::get('/admin/reports', [AdminController::class, 'reports']);
+    Route::get('/admin/user/{user}/view', [AdminController::class, 'userView']);
+    Route::get('/admin/user/{user}/ban', [AdminController::class, 'banUser']);
+    Route::get('/admin/user/{user}/unban', [AdminController::class, 'unbanUser']);
+    Route::get('/admin/user/list', [AdminController::class, 'userList']);
+    Route::get('/admin/user/blocked', [AdminController::class, 'blockedList']);
 
 
 
@@ -125,6 +135,9 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/userPanel/profile/view/{user}', [UserController::class, 'show']);
     Route::get('/userPanel/profile/view', [UserController::class, 'show']);
     Route::post('/userPanel/profile/edit/photo', [UserController::class, 'editPhoto']);
+
+
+    Route::get('/userPanel/user/ban_request/{user}', [UserController::class, 'sendBan']);
 
 
     // personal challenges

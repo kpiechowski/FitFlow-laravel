@@ -16,11 +16,14 @@ class CheckIsBanned
      */
     public function handle(Request $request, Closure $next): Response
     {
-        dd(Auth::check());
-        if(Auth::check() && Auth::user()->isBaned){
-         return redirect('/login');
+
+        if(Auth::check() && Auth::user()->isBanned){
+            Auth::logout();
+            return redirect('/login')->with('message', 'Twoje konto zostało zablokowane');
         }
+
         return $next($request);
-        return redirect('/userPanel/panel/');
+
+        // return redirect('/userPanel/panel/');
     }
 }

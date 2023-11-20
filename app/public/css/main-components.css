@@ -119,6 +119,15 @@ a:hover{
     align-items: stretch;
 }
 
+
+.gap-5{
+    gap:5px;
+}
+
+.gap-10{
+    gap:10px;
+}
+
 .p-0{
     padding:0;
 }

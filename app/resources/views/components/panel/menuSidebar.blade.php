@@ -71,7 +71,7 @@
             </div>
 
             <div class="sidebar-elem selectable-element">
-                <a href="{{ url('/admin/user/list') }}">Zablokowani użytkownicy</a>
+                <a href="{{ url('/admin/user/blocked') }}">Zablokowani użytkownicy</a>
             </div>
 
         </div>

@@ -13,11 +13,17 @@
     box-sizing: border-box;
 }
 
+
 .profile-image-holder{
     width:100%;
     height: 100%;
     position: relative;
 
+}
+
+.admin-profile-holder.profile-image-holder{
+    max-width:200px;
+    margin:0 auto
 }
 
 
@@ -997,7 +1003,60 @@
 }
 
 
+.admin-user-row{
+    background-color:#44608842;
+    margin-bottom: 6px;
+}
+.ad-user-profile{
+    max-width:200px;
 
+    width:100%;
+}
+
+.pagination-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    width:100%;
+}
+
+.pagination{
+    max-width: 300px;
+    width:100%;
+}
+.pagination li a{
+    display: flex;
+    width:100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+    border-radius:8px;
+}
+.pagination li a:hover{
+    opacity: .8;
+    background-color: var(--background-main);
+}
+
+.pagination li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius:8px;
+    /* border:2px  var(--background-main) solid; */
+    font-weight: 700;
+    color:white;
+    background-color: var(--panel-light);
+    font-size: 25px;
+
+}
+
+
+.pagination li.active{
+    background-color: var(--background-main);
+}
 
 
 

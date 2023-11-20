@@ -193,10 +193,13 @@
 
     <div class="element-100 mt-80 bg-light p-20 generic-wrapp year_summary relative">
         <div class="generic-title">Statystyki roczne</div>
-        <div class="year-slider-arrows w-100">
-            <span class="material-icon" id="year-slider-prev">arrow_back</span>
-            <span class="material-icon" id="year-slider-next">arrow_forward</span>
-        </div>
+
+        @if ($ac_by_year != [])
+            <div class="year-slider-arrows w-100">
+                <span class="material-icon" id="year-slider-prev">arrow_back</span>
+                <span class="material-icon" id="year-slider-next">arrow_forward</span>
+            </div>
+        @endif
 
         <div class="year-summary-slider-wrapper">
 
@@ -238,6 +241,10 @@
                 </div>
 
             @endforeach
+
+            @if ($ac_by_year == [])
+                <div class="w-100 text-center p-20 "> Brak danych do wyświetlenia </div>
+            @endif
 
         </div>
 

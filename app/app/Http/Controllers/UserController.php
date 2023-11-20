@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\ActivitiesType;
 use App\Models\Footwear;
+use App\Models\BanRequest;
 
 
 class UserController extends Controller
@@ -42,6 +43,23 @@ class UserController extends Controller
             'userID'=>$user->id,
             'team' => $user->team,
         ]);
+
+    }
+
+
+    public function sendBan(User $user){
+        if(!$user) return redirect('userPanel/panel');
+
+        $reqExists = BanRequest::where('user_id', $user->id)->first();
+
+        if($reqExists) return redirect()->back()->with('message', 'Wysłano zgłoszenie');
+
+
+        $ban = new BanRequest();
+        $ban->user_id = $user->id;
+        $ban->save();
+
+        return redirect()->back()->with('message', 'Wysłano zgłoszenie');
 
     }
 
@@ -221,6 +239,8 @@ class UserController extends Controller
         foreach ($footwear as $f) {
             $f->setAttribute('model', $user->footwear->find($f->footwear_id));
         }
+
+        // dd($activitiesByYearData);
 
         return view('profile.summary',[
             'userID' => $user->id,

@@ -103,7 +103,17 @@
 
         </div>
 
+        @if(!$self)
+        <div class="w-100 d-f jc-e ai-c mt-20">
+            <div class="mr-10">Opcje:</div>
+            <a href="{{ url('/userPanel/user/ban_request/'.$userData->id) }}"  class="material-button mr-5" title="Zgłoś uzytkownika"><span class="material-icon">report</span></a>
+            <a href="{{ url('/userPanel/friends/send/'.$userData->id) }}"  class="material-button" title="Dodaj do znajomych"><span class="material-icon">person_add</span></a>
+        </div>
+        @endif
+
     </div>
+
+
 
 
     <div class="element-row d-f jc-sb w-100 mt-80">

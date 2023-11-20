@@ -54,7 +54,7 @@ class User extends Authenticatable
     public function getUserData(){
 
         if($this->photo){
-            $url = url('images/userImage/' . $this->id() . 'profileIcon.webp');
+            $url = asset('storage/userProfiles/' . $this->photo);
             $userIconType = 'userIcon--photo';
             $content = "<img src='$url' loading='lazy' alt='UserIcon' >";
         }else{
