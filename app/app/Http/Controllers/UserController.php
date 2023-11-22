@@ -42,6 +42,7 @@ class UserController extends Controller
             'self' => $self_profile,
             'userID'=>$user->id,
             'team' => $user->team,
+            'footwearStats' => count($this->getUserFootwearStats()) > 0 ? $this->getUserFootwearStats() : false,
         ]);
 
     }
@@ -303,6 +304,7 @@ class UserController extends Controller
         }
 
         // dd($footwear);
+        // $this->getUserFootwearStats();
 
 
         // dump($generalData);
@@ -314,6 +316,28 @@ class UserController extends Controller
 
         ]);
 
+
+    }
+
+
+    public function getUserFootwearStats(){
+        $user = Auth::user();
+        $footwear = $user->userActivities()
+        ->select(DB::raw('COUNT(id) as fAmout'), DB::raw('SUM(value) as fValue, SUM(total_time) as fTime') ,'footwear_id')
+        ->where('footwear_id', '>', 0)
+        ->groupBy('footwear_id')
+        ->orderByDesc('fAmout')->get();
+
+
+
+        foreach ($footwear as $f) {
+            $f->setAttribute('model', $user->footwear->find($f->footwear_id));
+            $f->setAttribute('time', $this->convertMinutesToDHM($f->fTime));
+        }
+
+
+        // dd($footwear);
+        return $footwear;
 
     }
 

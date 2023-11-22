@@ -236,44 +236,18 @@
 
 
                 </div>
-{{--
-                <div class="profile-stat-el">
 
-                    <div class="stat-icon"><img src="{{ asset('/images/panel/icons/timer_icon.png') }}" alt="" loading="lazy"></div>
-                    <div class="stat-el-title w-100">Średni czas jednego treningu [min]</div>
-
-                    <div class="stat-el-value">
-                        32
-                    </div>
-
-                    <div class="stat-el-desc ">
-                        Więcej niż <span class="average">{{ $monthStats['month_avg_time']['all_percent'] }}%</span> użytkowników
-                    </div>
-
-                </div> --}}
             </div>
 
             <div class="text-center  d-f jc-c ai-c stat-row-title  "><b><a href="{{ url('/userPanel/summary/') }}" class="confirm-box-button">Zobacz podsumowanie</a></b></div>
-            {{-- <div class="w-100 d-f jc-c mt-50">
 
-                <div class="profile-stat-el">
-
-                    <div class="stat-icon"><img src="{{ asset('/images/panel/icons/calendar_icon.png') }}" alt="" loading="lazy"></div>
-                    <div class="stat-el-title w-100">Łączna liczba treningów</div>
-
-                    <div class="stat-el-value">
-                        {{ 40 }}
-                    </div>
-
-                    <div class="stat-el-desc">
-                        Więcej niż <span class="above">{{ 70 }}%</span> użytkowników
-                    </div>
-
-                </div>
-
-            </div> --}}
 
         </div>
+        @endif
+
+
+        @if(isset($footwearStats) && $self)
+            <x-footwearStats :footwear="$footwearStats" />
         @endif
 
     </div>

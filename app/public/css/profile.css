@@ -930,12 +930,12 @@
 
 
 .footwer-ranking{
-    gap:10%;
+    gap:20px;
 }
 
 
 .footwear-podium{
-    width:150px;
+    width:100%;
 }
 
 .footwear-box-holder{
@@ -943,20 +943,69 @@
     background-color: #44608842;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    align-items: end;
+    /* border-bottom: 4px solid var(--background-main); */
+}
+
+.footwear-box-holder-bottom{
+    width:100%;
+    background-color: var(--background-main);
+    color:white;
+    font-weight: 900;
+    font-family: var(--font-header);
+    text-align: center;
+    /* padding:5px 0; */
+    font-size: 70px;
+    display: flex ;
+    justify-content: center;
     align-items: center;
-    border-bottom: 4px solid var(--background-main);
+    height: 60px;
+
+}
+
+.footwear-stats{
+    width:100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    align-items: start;
+    padding:0 15px;
+
+}
+.footwear-stats p{
+    font-size: 18px;
+    letter-spacing: 2px;
+    width:100%;
+    text-align: center;
+    margin:8px 0;
+}
+.footwear-stats p .key{
+    color: var(--backgound-main);
+}
+
+.footwear-first{
+    order:2;
+}
+
+.footwear-second {
+    order:1;
+}
+
+.footwear-third{
+    order:3
 }
 
 .footwear-first .footwear-box-holder{
-    height: 300px;
+    height: 400px;
 }
 
 .footwear-second .footwear-box-holder{
-    height: 200px;
+    height: 300px;
 }
 
 .footwear-third .footwear-box-holder{
-    height: 100px;
+    height: 250px;
 }
 
 
@@ -1059,9 +1108,34 @@
 }
 
 
+@media (max-width:1450px){
+    .footwear-stats p{
+        font-size:14px;
+    }
+}
 
 
 @media(max-width:1150px){
+
+    .footwear-box-info .confirm-box-text{
+        font-size:16px;
+    }
+
+    .footwear-box-holder-bottom{
+        font-size:35px;
+    }
+
+    .footwear-stats p{
+        font-size:14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .footwear-stats p span{
+        width:100%;
+    }
     .stat-el-title, .stat-el-desc{
         font-size:15px;
     }
@@ -1124,6 +1198,10 @@
         height: 150px;
         top:-80px;
     }
+    .footwear-img{
+        width:100px;
+        height: 100px;
+    }
 }
 
 
@@ -1172,6 +1250,28 @@
 
 
 @media (max-width:700px){
+
+    .footwer-ranking {
+        flex-direction: column;
+
+    }
+.footwear-podium{
+    order:unset !important;
+    display: flex;
+    gap:10px;
+}
+
+.footwear-box-holder{
+    width:100%;
+    height: auto !important;
+    align-items: center;
+}
+
+.footwear-box-holder-bottom{
+    display: none;
+}
+
+
     .ac-row-name{
         font-size:18px;
     }

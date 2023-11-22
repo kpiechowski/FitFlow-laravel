@@ -3,9 +3,9 @@
 @php
     // dd($shoe)
 
-    if (!preg_match('/\.(jpg|png)$/',  $shoe->image)) {
-        $shoe->image .= ".png";
-    }
+    // if (!preg_match('/\.(jpg|png)$/',  $shoe->image)) {
+    //     $shoe->image .= ".png";
+    // }
 
 @endphp
 <div class="footwear-box round d-f  jc-sb">
